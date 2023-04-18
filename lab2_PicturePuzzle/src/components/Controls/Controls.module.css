@@ -1,0 +1,21 @@
+.button
+{
+    font-family: Roboto, sans-serif;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #88ff00;
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+
+.button:hover
+{
+    background-color: #64be00;
+}
+
+.message
+{
+    margin-bottom: 10px;
+    font-family: Roboto, sans-serif;
+}
