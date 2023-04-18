@@ -175,15 +175,15 @@ void Window::Draw(int width, int height)
 		glVertex3f(-1, 1, 0);
 
 		// нижний левый угол
-		glTexCoord2f(0, 1);
+		glTexCoord2f(0, 4);
 		glVertex3f(-1, -1, 0);
 
 		// нижний правый угол
-		glTexCoord2f(1, 1);
+		glTexCoord2f(4, 4);
 		glVertex3f(1, -1, 0);
 
 		// верхний правый угол
-		glTexCoord2f(1, 0);
+		glTexCoord2f(4, 0);
 		glVertex3f(1, 1, 0);
 	}
 	glEnd();
