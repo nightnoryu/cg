@@ -1,60 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Window">
+      <UniqueIdentifier>{a2afd9c9-acc8-4e38-97f4-1f151d48ec6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="GLFWInitializer">
+      <UniqueIdentifier>{70f88da4-b6bd-440c-8e53-fb35d932388d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Light">
+      <UniqueIdentifier>{2e7cf04a-d93f-49bf-a5e6-6f17b1790a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stb_image">
+      <UniqueIdentifier>{3c0a77dd-ef34-4a6f-8099-59d3d62ce1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cottage">
+      <UniqueIdentifier>{bb55228a-fa38-4712-b4e9-cc8e67f68cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{119a65e8-b292-48d8-99c8-fedd9a3b2557}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Window.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="DirectLight.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BaseWindow.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="GLFWInitializer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GLFWInitializer</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DirectLight.cpp">
+      <Filter>Light</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="Cottage.cpp">
+      <Filter>Cottage</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
     <ClInclude Include="BaseWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="common_inc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectLight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="GLFWInitializer.h">
-      <Filter>Header Files</Filter>
+      <Filter>GLFWInitializer</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DirectLight.h">
+      <Filter>Light</Filter>
     </ClInclude>
+    <ClInclude Include="common_inc.h" />
     <ClInclude Include="stb_image.h">
-      <Filter>Header Files</Filter>
+      <Filter>stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Cottage.h">
+      <Filter>Cottage</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Textures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

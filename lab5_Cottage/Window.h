@@ -1,5 +1,8 @@
 #pragma once
+
 #include "BaseWindow.h"
+#include "Cottage.h"
+#include "TextureLoader.h"
 
 class Window : public BaseWindow
 {
@@ -27,6 +30,8 @@ private:
 	// –ассто€ние от камеры до точки вращени€
 	static constexpr double DISTANCE_TO_ORIGIN = 5;
 
+	TextureLoader m_textureLoader;
+
 	bool m_leftButtonPressed = false;
 	glm::dvec2 m_mousePos = {};
 	glm::dmat4x4 m_cameraMatrix = glm::lookAt(
@@ -35,4 +40,5 @@ private:
 		glm::dvec3{ 0.0, 1.0, 0.0 });
 
 	GLuint m_texture = 0;
+	Cottage m_cottage;
 };

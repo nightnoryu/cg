@@ -135,18 +135,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWindow.cpp" />
+    <ClCompile Include="Cottage.cpp" />
     <ClCompile Include="DirectLight.cpp" />
     <ClCompile Include="GLFWInitializer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="common_inc.h" />
+    <ClInclude Include="Cottage.h" />
     <ClInclude Include="DirectLight.h" />
     <ClInclude Include="GLFWInitializer.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
