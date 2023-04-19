@@ -9,7 +9,7 @@ public:
 	TextureHandle(GLuint texture);
 
 	void Delete() noexcept;
-	void BindTo(GLenum target) const;
+	void Bind() const;
 
 	operator GLuint() const;
 

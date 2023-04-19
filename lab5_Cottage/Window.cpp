@@ -91,6 +91,8 @@ void Window::OnRunStart()
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(1, 1, 1, 1);
 
+	glEnable(GL_TEXTURE_2D);
+
 	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
 	m_cottage.SetWallTexture(m_wallTexture);
 }

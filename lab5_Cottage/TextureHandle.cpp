@@ -18,10 +18,10 @@ TextureHandle::operator GLuint() const
 	return m_texture;
 }
 
-void TextureHandle::BindTo(GLenum target) const
+void TextureHandle::Bind() const
 {
 	if (m_texture)
 	{
-		glBindTexture(target, m_texture);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
 	}
 }
