@@ -1,11 +1,11 @@
 #pragma once
 
-#include "common_inc.h"
+#include "TextureHandle.h"
 
 class TextureLoader
 {
 public:
-	GLuint LoadTexture(std::string const& filename, GLuint textureName = 0, GLuint level = 0) const;
+	TextureHandle LoadTexture(std::string const& filename, GLuint textureName = 0, GLuint level = 0) const;
 
 	void SetMinFilter(GLenum filter);
 	void SetMagFilter(GLenum filter);

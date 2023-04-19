@@ -1,6 +1,6 @@
 #include "TextureLoader.h"
 
-GLuint TextureLoader::LoadTexture(std::string const& filename, GLuint textureName, GLuint level) const
+TextureHandle TextureLoader::LoadTexture(std::string const& filename, GLuint textureName, GLuint level) const
 {
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(filename.c_str(), &width, &height, &nrChannels, STBI_rgb);
@@ -24,7 +24,7 @@ GLuint TextureLoader::LoadTexture(std::string const& filename, GLuint textureNam
 
 	stbi_image_free(data);
 
-	return texture;
+	return TextureHandle(texture);
 }
 
 void TextureLoader::SetMinFilter(GLenum filter)

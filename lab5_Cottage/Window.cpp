@@ -27,10 +27,7 @@ Window::Window(int w, int h, char const* title)
 
 Window::~Window() noexcept
 {
-	if (m_texture)
-	{
-		glDeleteTextures(1, &m_texture);
-	}
+	m_wallTexture.Delete();
 }
 
 void Window::OnMouseButton(int button, int action, int mods)
@@ -94,7 +91,8 @@ void Window::OnRunStart()
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(1, 1, 1, 1);
 
-	m_texture = m_textureLoader.LoadTexture("Assets/bricks.png");
+	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
+	m_cottage.SetWallTexture(m_wallTexture);
 }
 
 void Window::Draw(int width, int height)
@@ -102,31 +100,6 @@ void Window::Draw(int width, int height)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	SetupCameraMatrix();
-
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, m_texture);
-
-	glBegin(GL_QUADS);
-	{
-		glNormal3f(0, 0, 1);
-
-		// верхний левый угол
-		glTexCoord2f(0, 0);
-		glVertex3f(-1, 1, 0);
-
-		// нижний левый угол
-		glTexCoord2f(0, 4);
-		glVertex3f(-1, -1, 0);
-
-		// нижний правый угол
-		glTexCoord2f(4, 4);
-		glVertex3f(1, -1, 0);
-
-		// верхний правый угол
-		glTexCoord2f(4, 0);
-		glVertex3f(1, 1, 0);
-	}
-	glEnd();
 
 	m_cottage.Draw();
 }

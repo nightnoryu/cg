@@ -39,6 +39,6 @@ private:
 		glm::dvec3{ 0.0, 0.0, 0.0 },
 		glm::dvec3{ 0.0, 1.0, 0.0 });
 
-	GLuint m_texture = 0;
 	Cottage m_cottage;
+	TextureHandle m_wallTexture;
 };

@@ -19,6 +19,9 @@
     <Filter Include="Textures">
       <UniqueIdentifier>{119a65e8-b292-48d8-99c8-fedd9a3b2557}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{9f4e5dcf-372e-4eb1-808c-78c38aba4c2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -46,6 +49,12 @@
     <ClCompile Include="TextureLoader.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
+    <ClCompile Include="TextureHandle.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuboid.cpp">
+      <Filter>Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -69,6 +78,12 @@
     </ClInclude>
     <ClInclude Include="TextureLoader.h">
       <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureHandle.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Cuboid.h">
+      <Filter>Shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
