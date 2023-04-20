@@ -7,6 +7,8 @@ class Dodecahedron
 public:
 	Dodecahedron();
 	void Draw() const;
+	void DrawSolidParts() const;
+	void DrawTransparentParts() const;
 
 	void SetSideColor(std::size_t side, glm::vec4 const& color);
 
@@ -59,6 +61,6 @@ private:
 	void DrawFaces(GLenum cullFace) const;
 
 	glm::vec4 m_sideColors[12];
-	glm::vec4 m_specularColor = { 0, 0, 0, 1 };
+	glm::vec4 m_specularColor = { 0.3f, 0.3f, 0.3f, 1 };
 	float m_shininess = 1;
 };

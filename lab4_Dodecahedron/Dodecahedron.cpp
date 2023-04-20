@@ -9,18 +9,16 @@ Dodecahedron::Dodecahedron()
 	}
 }
 
-void Dodecahedron::Draw() const
-{
-	glEnable(GL_COLOR_MATERIAL);
-	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(m_specularColor));
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, m_shininess);
 
+void Dodecahedron::DrawSolidParts() const
+{
 	DrawOutline();
+}
+
+void Dodecahedron::DrawTransparentParts() const
+{
 	DrawFaces(GL_FRONT);
 	DrawFaces(GL_BACK);
-
-	glFlush();
 }
 
 void Dodecahedron::SetSideColor(std::size_t side, glm::vec4 const& color)
@@ -30,6 +28,8 @@ void Dodecahedron::SetSideColor(std::size_t side, glm::vec4 const& color)
 
 void Dodecahedron::DrawOutline() const
 {
+	glEnable(GL_COLOR_MATERIAL);
+
 	for (auto facePoints : FACES)
 	{
 		glColor4f(0, 0, 0, 1);
@@ -44,7 +44,13 @@ void Dodecahedron::DrawOutline() const
 
 void Dodecahedron::DrawFaces(GLenum cullFace) const
 {
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(m_specularColor));
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, m_shininess);
+
 	glCullFace(cullFace);
+
 	for (std::size_t face = 0; face < FACE_COUNT; ++face)
 	{
 		auto const facePoints = FACES[face];

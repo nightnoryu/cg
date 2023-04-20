@@ -128,10 +128,7 @@ void Window::OnRunStart()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Направление на источник света (совпадает с позицией наблюдателя)
-	DirectLight light{ { 0.0f, 0.0f, 1.0f } };
-	light.SetDiffuseColor({ 0.5f, 0.5f, 0.5f, 1.0f });
-	light.SetAmbientColor({ 0.0f, 0.0f, 0.0f, 1.0f });
-	light.SetSpecularColor({ 0.3f, 0.3f, 0.3f, 1.0f });
+	DirectLight light{ { 0.0f, 0.0f, 5.0f } };
 	light.Apply(GL_LIGHT0);
 }
 
@@ -142,7 +139,11 @@ void Window::Draw(int width, int height)
 
 	SetupCameraMatrix();
 
-	m_dodecahedron.Draw();
+	m_dodecahedron.DrawSolidParts();
+
+	glDepthMask(GL_FALSE);
+	m_dodecahedron.DrawTransparentParts();
+	glDepthMask(GL_TRUE);
 }
 
 void Window::SetupCameraMatrix()

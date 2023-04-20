@@ -27,7 +27,7 @@ private:
 	Dodecahedron m_dodecahedron;
 	// –ассто€ние от камеры до точки вращени€
 	static constexpr double DISTANCE_TO_ORIGIN = 5;
-	static constexpr float SHAPE_ALPHA = 0.7;
+	static constexpr float SHAPE_ALPHA = 0.7f;
 
 	bool m_leftButtonPressed = false;
 	glm::dvec2 m_mousePos = {};
