@@ -81,8 +81,8 @@ void Window::OnResize(int width, int height)
 
 void Window::OnRunStart()
 {
-	/*glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);*/
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -92,6 +92,9 @@ void Window::OnRunStart()
 	glClearColor(1, 1, 1, 1);
 
 	glEnable(GL_TEXTURE_2D);
+
+	DirectLight light{ { 0.0f, 0.0f, 1.0f } };
+	light.Apply(GL_LIGHT0);
 
 	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
 	m_cottage.SetWallTexture(m_wallTexture);
