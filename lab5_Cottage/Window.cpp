@@ -29,6 +29,8 @@ Window::Window(int w, int h, char const* title)
 
 Window::~Window() noexcept
 {
+	m_groundTexture.Delete();
+
 	m_wallTexture.Delete();
 	m_windowTexture.Delete();
 	m_doorTopTexture.Delete();
@@ -101,6 +103,9 @@ void Window::OnRunStart()
 	/*DirectLight light{ { 0.0f, 0.0f, 1.0f } };
 	light.Apply(GL_LIGHT0);*/
 
+	m_groundTexture = m_textureLoader.LoadTexture("Assets/grass_block_top.png");
+	m_environment.SetGroundTexture(m_groundTexture);
+
 	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
 	m_cottage.SetWallTexture(m_wallTexture);
 
@@ -118,6 +123,7 @@ void Window::Draw(int width, int height)
 
 	SetupCameraMatrix();
 
+	m_environment.Draw();
 	m_cottage.Draw();
 }
 

@@ -58,6 +58,9 @@
     <ClCompile Include="TexturedRectangle.cpp">
       <Filter>Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Cottage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -90,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="TexturedRectangle.h">
       <Filter>Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Cottage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

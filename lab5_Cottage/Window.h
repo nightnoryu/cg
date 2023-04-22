@@ -2,6 +2,7 @@
 
 #include "BaseWindow.h"
 #include "Cottage.h"
+#include "Environment.h"
 #include "TextureLoader.h"
 
 class Window : public BaseWindow
@@ -28,18 +29,22 @@ private:
 	void SetupCameraMatrix();
 
 	// –ассто€ние от камеры до точки вращени€
-	static constexpr double DISTANCE_TO_ORIGIN = 15;
+	static constexpr double DISTANCE_TO_ORIGIN = 12;
 
 	TextureLoader m_textureLoader;
 
 	bool m_leftButtonPressed = false;
 	glm::dvec2 m_mousePos = {};
 	glm::dmat4x4 m_cameraMatrix = glm::lookAt(
-		glm::dvec3{ 0.0, 0.0, DISTANCE_TO_ORIGIN },
+		glm::dvec3{ 0.0, -DISTANCE_TO_ORIGIN, 10.0 },
 		glm::dvec3{ 0.0, 0.0, 0.0 },
-		glm::dvec3{ 0.0, 1.0, 0.0 });
+		glm::dvec3{ 0.0, 0.0, 1.0 });
 
 	Cottage m_cottage;
+	Environment m_environment;
+
+	TextureHandle m_groundTexture;
+
 	TextureHandle m_wallTexture;
 	TextureHandle m_windowTexture;
 	TextureHandle m_doorTopTexture, m_doorBottomTexture;

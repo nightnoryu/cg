@@ -16,13 +16,13 @@ void TexturedRectangle::Draw() const
 		glTexCoord2f(0, 0);
 		glVertex3fv(glm::value_ptr(m_position));
 
-		glTexCoord2f(0, 1);
+		glTexCoord2f(0, m_textureScale);
 		glVertex3fv(glm::value_ptr(m_position + m_direction2));
 		
-		glTexCoord2f(1, 1);
+		glTexCoord2f(m_textureScale, m_textureScale);
 		glVertex3fv(glm::value_ptr(m_position + m_direction1 + m_direction2));
 
-		glTexCoord2f(1, 0);
+		glTexCoord2f(m_textureScale, 0);
 		glVertex3fv(glm::value_ptr(m_position + m_direction1));
 	}
 	glEnd();
@@ -31,4 +31,9 @@ void TexturedRectangle::Draw() const
 void TexturedRectangle::SetTexture(TextureHandle texture)
 {
 	m_texture = texture;
+}
+
+void TexturedRectangle::SetTextureScale(float scale)
+{
+	m_textureScale = scale;
 }

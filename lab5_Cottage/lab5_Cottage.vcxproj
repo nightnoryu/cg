@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="BaseWindow.cpp" />
     <ClCompile Include="Cottage.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="TexturedCube.cpp" />
     <ClCompile Include="DirectLight.cpp" />
     <ClCompile Include="GLFWInitializer.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="common_inc.h" />
     <ClInclude Include="Cottage.h" />
+    <ClInclude Include="Environment.h" />
     <ClInclude Include="TexturedCube.h" />
     <ClInclude Include="DirectLight.h" />
     <ClInclude Include="GLFWInitializer.h" />
