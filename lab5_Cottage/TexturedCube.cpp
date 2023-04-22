@@ -1,6 +1,6 @@
-#include "Cube.h"
+#include "TexturedCube.h"
 
-Cube::Cube(glm::vec3 position, float size)
+TexturedCube::TexturedCube(glm::vec3 position, float size)
 	: m_position(position)
 	, m_size(size)
 {
@@ -13,7 +13,7 @@ Cube::Cube(glm::vec3 position, float size)
 	}
 }
 
-void Cube::Draw() const
+void TexturedCube::Draw() const
 {
 	for (unsigned faceIndex = 0; faceIndex < FACE_COUNT; ++faceIndex)
 	{
@@ -39,7 +39,7 @@ void Cube::Draw() const
 	}
 }
 
-void Cube::SetTexture(TextureHandle const& texture)
+void TexturedCube::SetTexture(TextureHandle const& texture)
 {
 	m_texture = texture;
 }

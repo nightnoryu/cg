@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Cube.h"
+#include "TexturedCube.h"
+#include "TexturedRectangle.h"
 
 class Cottage
 {
@@ -10,9 +11,13 @@ public:
 	void Draw() const;
 
 	void SetWallTexture(TextureHandle const& texture);
+	void SetWindowTexture(TextureHandle const& texture);
 
 private:
-	Cube m_section1;
-	Cube m_section2;
-	Cube m_section3;
+	TexturedCube m_section1;
+	TexturedCube m_section2;
+	TexturedCube m_section3;
+
+	TexturedRectangle m_window1;
+	TexturedRectangle m_window2;
 };

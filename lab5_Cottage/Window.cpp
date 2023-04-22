@@ -23,11 +23,14 @@ glm::dmat4x4 Orthonormalize(glm::dmat4x4 const& m)
 Window::Window(int w, int h, char const* title)
 	: BaseWindow(w, h, title)
 {
+	m_textureLoader.SetMagFilter(GL_NEAREST);
+	m_textureLoader.SetMinFilter(GL_NEAREST);
 }
 
 Window::~Window() noexcept
 {
 	m_wallTexture.Delete();
+	m_windowTexture.Delete();
 }
 
 void Window::OnMouseButton(int button, int action, int mods)
@@ -98,6 +101,9 @@ void Window::OnRunStart()
 
 	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
 	m_cottage.SetWallTexture(m_wallTexture);
+
+	m_windowTexture = m_textureLoader.LoadTexture("Assets/glass.png");
+	m_cottage.SetWindowTexture(m_windowTexture);
 }
 
 void Window::Draw(int width, int height)

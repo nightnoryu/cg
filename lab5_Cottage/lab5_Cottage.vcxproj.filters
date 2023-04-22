@@ -52,7 +52,10 @@
     <ClCompile Include="TextureHandle.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
+    <ClCompile Include="TexturedCube.cpp">
+      <Filter>Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturedRectangle.cpp">
       <Filter>Shapes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,7 +85,10 @@
     <ClInclude Include="TextureHandle.h">
       <Filter>Textures</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
+    <ClInclude Include="TexturedCube.h">
+      <Filter>Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedRectangle.h">
       <Filter>Shapes</Filter>
     </ClInclude>
   </ItemGroup>

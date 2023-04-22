@@ -2,10 +2,10 @@
 
 #include "TextureHandle.h"
 
-class Cube
+class TexturedCube
 {
 public:
-	Cube(glm::vec3 position, float size);
+	TexturedCube(glm::vec3 position, float size);
 
 	void Draw() const;
 
