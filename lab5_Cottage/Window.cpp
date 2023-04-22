@@ -115,11 +115,20 @@ void Window::OnRunStart()
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
 
-	/*glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	DirectLight light{ { 0.0f, 0.0f, 1.0f } };
-	light.Apply(GL_LIGHT0);*/
+	SetupLight();
+	SetupTextures();
+}
 
+void Window::SetupLight()
+{
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	DirectLight light({ 0.0f, 0.0f, 1.0f });
+	light.Apply(GL_LIGHT0);
+}
+
+void Window::SetupTextures()
+{
 	glEnable(GL_TEXTURE_2D);
 
 	m_groundTexture = m_textureLoader.LoadTexture("Assets/grass_block_top.png");

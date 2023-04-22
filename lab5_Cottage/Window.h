@@ -25,6 +25,8 @@ private:
 	void OnKey(int key) override;
 
 	void OnRunStart() override;
+	void SetupLight();
+	void SetupTextures();
 
 	void Draw(int width, int height) const override;
 
