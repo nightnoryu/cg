@@ -21,16 +21,15 @@ public:
 private:
 	static BaseWindow* GetBaseWindow(GLFWwindow* window);
 
-	virtual void OnResize(
-		[[maybe_unused]] int width, [[maybe_unused]] int height) {}
-	virtual void OnMouseButton(
-		[[maybe_unused]] int button, [[maybe_unused]] int action,
-		[[maybe_unused]] int mods) {}
-	virtual void OnMouseMove(
-		[[maybe_unused]] double x, [[maybe_unused]] double y) {}
-	virtual void Draw(int width, int height) = 0;
+	virtual void OnResize(int width, int height) {}
+	virtual void OnMouseButton(int button, int action, int mods) {}
+	virtual void OnMouseMove(double x, double y) {}
+	virtual void OnKey(int key) {}
+
 	virtual void OnRunStart() {}
 	virtual void OnRunEnd() {}
+
+	virtual void Draw(int width, int height) = 0;
 
 	static GLFWwindow* MakeWindow(int w, int h, char const* title);
 

@@ -24,6 +24,11 @@ BaseWindow::BaseWindow(int w, int h, char const* title)
 		[](GLFWwindow* window, double x, double y) {
 			GetBaseWindow(window)->OnMouseMove(x, y);
 		});
+
+	glfwSetKeyCallback(m_window,
+		[](GLFWwindow* window, int key, int scancode, int action, int mods) {
+			GetBaseWindow(window)->OnKey(key);
+		});
 }
 
 BaseWindow::~BaseWindow()

@@ -86,22 +86,42 @@ void Window::OnResize(int width, int height)
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void Window::OnKey(int key)
+{
+	switch (key)
+	{
+	case GLFW_KEY_0:
+		m_fogEnabled = false;
+		m_fogColor = NO_FOG;
+		break;
+	case GLFW_KEY_1:
+		m_fogEnabled = true;
+		m_fogColor = PLAIN_FOG;
+		break;
+	case GLFW_KEY_2:
+		m_fogEnabled = true;
+		m_fogColor = NIGHT_FOG;
+		break;
+	default:
+		break;
+	}
+}
+
 void Window::OnRunStart()
 {
-	/*glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);*/
+	glClearColor(m_fogColor[0], m_fogColor[1], m_fogColor[2], m_fogColor[3]);
+	glEnable(GL_DEPTH_TEST);
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
 
-	glEnable(GL_DEPTH_TEST);
-	glClearColor(1, 1, 1, 1);
+	/*glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	DirectLight light{ { 0.0f, 0.0f, 1.0f } };
+	light.Apply(GL_LIGHT0);*/
 
 	glEnable(GL_TEXTURE_2D);
-
-	/*DirectLight light{ { 0.0f, 0.0f, 1.0f } };
-	light.Apply(GL_LIGHT0);*/
 
 	m_groundTexture = m_textureLoader.LoadTexture("Assets/grass_block_top.png");
 	m_environment.SetGroundTexture(m_groundTexture);
@@ -122,6 +142,20 @@ void Window::Draw(int width, int height)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	SetupCameraMatrix();
+
+	glClearColor(m_fogColor[0], m_fogColor[1], m_fogColor[2], m_fogColor[3]);
+	glFogfv(GL_FOG_COLOR, glm::value_ptr(m_fogColor));
+	glFogi(GL_FOG_MODE, GL_EXP);
+	glFogf(GL_FOG_DENSITY, 0.15f);
+
+	if (m_fogEnabled)
+	{
+		glEnable(GL_FOG);
+	}
+	else
+	{
+		glDisable(GL_FOG);
+	}
 
 	m_environment.Draw();
 	m_cottage.Draw();
