@@ -29,7 +29,7 @@ private:
 	virtual void OnRunStart() {}
 	virtual void OnRunEnd() {}
 
-	virtual void Draw(int width, int height) = 0;
+	virtual void Draw(int width, int height) const = 0;
 
 	static GLFWwindow* MakeWindow(int w, int h, char const* title);
 

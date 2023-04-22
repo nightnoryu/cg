@@ -7,7 +7,7 @@ TextureHandle TextureLoader::LoadTexture(std::string const& filename, GLuint tex
 
 	if (!data)
 	{
-		throw std::runtime_error("failed to load texture");
+		throw std::runtime_error("Failed to load texture");
 	}
 
 	GLuint texture = 0;
@@ -25,20 +25,4 @@ TextureHandle TextureLoader::LoadTexture(std::string const& filename, GLuint tex
 	stbi_image_free(data);
 
 	return TextureHandle(texture);
-}
-
-void TextureLoader::SetMinFilter(GLenum filter)
-{
-	m_minFilter = filter;
-}
-
-void TextureLoader::SetMagFilter(GLenum filter)
-{
-	m_magFilter = filter;
-}
-
-void TextureLoader::SetWrapMode(GLenum wrapS, GLenum wrapT)
-{
-	m_wrapS = wrapS;
-	m_wrapT = wrapT;
 }

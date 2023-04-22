@@ -23,8 +23,6 @@ glm::dmat4x4 Orthonormalize(glm::dmat4x4 const& m)
 Window::Window(int w, int h, char const* title)
 	: BaseWindow(w, h, title)
 {
-	m_textureLoader.SetMagFilter(GL_NEAREST);
-	m_textureLoader.SetMinFilter(GL_NEAREST);
 }
 
 Window::~Window() noexcept
@@ -137,12 +135,25 @@ void Window::OnRunStart()
 	m_cottage.SetDoorTextures(m_doorTopTexture, m_doorBottomTexture);
 }
 
-void Window::Draw(int width, int height)
+void Window::Draw(int width, int height) const
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	SetupCameraMatrix();
+	SetupFog();
 
+	m_environment.Draw();
+	m_cottage.Draw();
+}
+
+void Window::SetupCameraMatrix() const
+{
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(&m_cameraMatrix[0][0]);
+}
+
+void Window::SetupFog() const
+{
 	glClearColor(m_fogColor[0], m_fogColor[1], m_fogColor[2], m_fogColor[3]);
 	glFogfv(GL_FOG_COLOR, glm::value_ptr(m_fogColor));
 	glFogi(GL_FOG_MODE, GL_EXP);
@@ -156,13 +167,4 @@ void Window::Draw(int width, int height)
 	{
 		glDisable(GL_FOG);
 	}
-
-	m_environment.Draw();
-	m_cottage.Draw();
-}
-
-void Window::SetupCameraMatrix()
-{
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixd(&m_cameraMatrix[0][0]);
 }

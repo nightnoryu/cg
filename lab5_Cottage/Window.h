@@ -26,9 +26,11 @@ private:
 
 	void OnRunStart() override;
 
-	void Draw(int width, int height) override;
+	void Draw(int width, int height) const override;
 
-	void SetupCameraMatrix();
+	void SetupCameraMatrix() const;
+
+	void SetupFog() const;
 
 	// –ассто€ние от камеры до точки вращени€
 	static constexpr double DISTANCE_TO_ORIGIN = 12;
