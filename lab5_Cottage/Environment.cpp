@@ -3,7 +3,7 @@
 Environment::Environment()
 	: m_ground({ -8, -8, 2}, { 0, 16, 0 }, { 16, 0, 0 })
 {
-	m_ground.SetTextureScale(5);
+	m_ground.SetTextureScale(10);
 }
 
 void Environment::Draw() const

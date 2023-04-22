@@ -59,4 +59,5 @@ private:
 	TextureHandle m_wallTexture;
 	TextureHandle m_windowTexture;
 	TextureHandle m_doorTopTexture, m_doorBottomTexture;
+	TextureHandle m_garageDoorTexture;
 };
