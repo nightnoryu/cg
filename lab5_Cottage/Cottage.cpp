@@ -1,9 +1,9 @@
 #include "Cottage.h"
 
 Cottage::Cottage()
-	: m_section1({ -6, -2, 0 }, 4)
-	, m_section2({ -2, -2, 0 }, 4)
-	, m_section3({ 2, -1.5f, 0 }, 3)
+	: m_section1({ -6, -2, 2 }, 4)
+	, m_section2({ -2, -2, 2 }, 4)
+	, m_section3({ 2, -1.5f, 2 }, 3)
 {
 }
 
