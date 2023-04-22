@@ -1,5 +1,12 @@
 #include "Cottage.h"
 
+Cottage::Cottage()
+	: m_section1({ -6, -2, 0 }, 4)
+	, m_section2({ -2, -2, 0 }, 4)
+	, m_section3({ 2, -1.5f, 0 }, 3)
+{
+}
+
 void Cottage::Draw() const
 {
 	m_section1.Draw();
@@ -10,6 +17,4 @@ void Cottage::Draw() const
 void Cottage::SetWallTexture(TextureHandle const& texture)
 {
 	m_section1.SetTexture(texture);
-	m_section2.SetTexture(texture);
-	m_section3.SetTexture(texture);
 }

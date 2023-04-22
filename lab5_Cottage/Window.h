@@ -28,7 +28,7 @@ private:
 	void SetupCameraMatrix();
 
 	// –ассто€ние от камеры до точки вращени€
-	static constexpr double DISTANCE_TO_ORIGIN = 5;
+	static constexpr double DISTANCE_TO_ORIGIN = 15;
 
 	TextureLoader m_textureLoader;
 

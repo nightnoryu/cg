@@ -6,7 +6,7 @@ namespace
 constexpr double FIELD_OF_VIEW = 60 * std::numbers::pi / 180.0;
 
 constexpr double Z_NEAR = 0.1;
-constexpr double Z_FAR = 10;
+constexpr double Z_FAR = 20;
 
 glm::dmat4x4 Orthonormalize(glm::dmat4x4 const& m)
 {
@@ -81,8 +81,8 @@ void Window::OnResize(int width, int height)
 
 void Window::OnRunStart()
 {
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	/*glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);*/
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -93,8 +93,8 @@ void Window::OnRunStart()
 
 	glEnable(GL_TEXTURE_2D);
 
-	DirectLight light{ { 0.0f, 0.0f, 1.0f } };
-	light.Apply(GL_LIGHT0);
+	/*DirectLight light{ { 0.0f, 0.0f, 1.0f } };
+	light.Apply(GL_LIGHT0);*/
 
 	m_wallTexture = m_textureLoader.LoadTexture("Assets/bricks.png");
 	m_cottage.SetWallTexture(m_wallTexture);

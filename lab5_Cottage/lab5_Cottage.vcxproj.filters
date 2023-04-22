@@ -52,7 +52,7 @@
     <ClCompile Include="TextureHandle.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
-    <ClCompile Include="Cuboid.cpp">
+    <ClCompile Include="Cube.cpp">
       <Filter>Shapes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,7 +82,7 @@
     <ClInclude Include="TextureHandle.h">
       <Filter>Textures</Filter>
     </ClInclude>
-    <ClInclude Include="Cuboid.h">
+    <ClInclude Include="Cube.h">
       <Filter>Shapes</Filter>
     </ClInclude>
   </ItemGroup>
