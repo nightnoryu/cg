@@ -31,6 +31,8 @@ Window::~Window() noexcept
 {
 	m_wallTexture.Delete();
 	m_windowTexture.Delete();
+	m_doorTopTexture.Delete();
+	m_doorBottomTexture.Delete();
 }
 
 void Window::OnMouseButton(int button, int action, int mods)
@@ -104,6 +106,10 @@ void Window::OnRunStart()
 
 	m_windowTexture = m_textureLoader.LoadTexture("Assets/glass.png");
 	m_cottage.SetWindowTexture(m_windowTexture);
+
+	m_doorTopTexture = m_textureLoader.LoadTexture("Assets/birch_door_top.png");
+	m_doorBottomTexture = m_textureLoader.LoadTexture("Assets/birch_door_bottom.png");
+	m_cottage.SetDoorTextures(m_doorTopTexture, m_doorBottomTexture);
 }
 
 void Window::Draw(int width, int height)

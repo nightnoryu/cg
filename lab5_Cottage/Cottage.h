@@ -12,6 +12,7 @@ public:
 
 	void SetWallTexture(TextureHandle const& texture);
 	void SetWindowTexture(TextureHandle const& texture);
+	void SetDoorTextures(TextureHandle const& doorTop, TextureHandle const& doorBottom);
 
 private:
 	TexturedCube m_section1;
@@ -20,4 +21,7 @@ private:
 
 	TexturedRectangle m_window1;
 	TexturedRectangle m_window2;
+
+	TexturedRectangle m_doorTop;
+	TexturedRectangle m_doorBottom;
 };

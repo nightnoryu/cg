@@ -42,4 +42,5 @@ private:
 	Cottage m_cottage;
 	TextureHandle m_wallTexture;
 	TextureHandle m_windowTexture;
+	TextureHandle m_doorTopTexture, m_doorBottomTexture;
 };
