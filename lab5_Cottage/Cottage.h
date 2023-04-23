@@ -2,6 +2,7 @@
 
 #include "TexturedCube.h"
 #include "TexturedRectangle.h"
+#include "TexturedTriangle.h"
 
 class Cottage
 {
@@ -31,4 +32,7 @@ private:
 
 	TexturedRectangle m_roofFront;
 	TexturedRectangle m_roofBack;
+
+	TexturedTriangle m_roofLeft;
+	TexturedTriangle m_roofRight;
 };

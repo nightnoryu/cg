@@ -11,9 +11,13 @@ Cottage::Cottage()
 	, m_garageDoor({ 2.3f, -1.6f, 2.5f }, { 2.2f, 0, 0 }, { 0, 0, -2.5f })
 	, m_roofFront({ -6, -2, 4 }, { 0, 2, 3 }, { 8, 0, 0 })
 	, m_roofBack({ -6, 0, 7 }, { 0, 2, -3 }, { 8, 0, 0 })
+	, m_roofLeft({ -6, 2, 4 }, { -6, -2, 4 }, { -6, 0, 7 })
+	, m_roofRight({ 2, -2, 4 } , { 2, 2, 4 }, { 2, 0, 7 })
 {
 	m_roofFront.SetTextureScale(10);
 	m_roofBack.SetTextureScale(10);
+	m_roofLeft.SetTextureScale(10);
+	m_roofRight.SetTextureScale(10);
 }
 
 void Cottage::Draw() const
@@ -32,6 +36,8 @@ void Cottage::Draw() const
 
 	m_roofFront.Draw();
 	m_roofBack.Draw();
+	m_roofLeft.Draw();
+	m_roofRight.Draw();
 }
 
 void Cottage::SetWallTexture(TextureHandle const& texture)
@@ -59,4 +65,6 @@ void Cottage::SetRoofTexture(TextureHandle const& texture)
 {
 	m_roofFront.SetTexture(texture);
 	m_roofBack.SetTexture(texture);
+	m_roofLeft.SetTexture(texture);
+	m_roofRight.SetTexture(texture);
 }
