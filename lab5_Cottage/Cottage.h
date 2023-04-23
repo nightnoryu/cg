@@ -13,7 +13,8 @@ public:
 	void SetWallTexture(TextureHandle const& texture);
 	void SetWindowTexture(TextureHandle const& texture);
 	void SetDoorTextures(TextureHandle const& doorTop, TextureHandle const& doorBottom);
-	void SetGarageDoorTextures(TextureHandle const& texture);
+	void SetGarageDoorTexture(TextureHandle const& texture);
+	void SetRoofTexture(TextureHandle const& texture);
 
 private:
 	TexturedCube m_section1;
@@ -27,4 +28,7 @@ private:
 	TexturedRectangle m_doorBottom;
 
 	TexturedRectangle m_garageDoor;
+
+	TexturedRectangle m_roofFront;
+	TexturedRectangle m_roofBack;
 };
