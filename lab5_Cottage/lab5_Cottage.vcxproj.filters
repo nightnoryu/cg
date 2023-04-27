@@ -61,7 +61,9 @@
     <ClCompile Include="Environment.cpp">
       <Filter>Cottage</Filter>
     </ClCompile>
-    <ClCompile Include="TexturedTriangle.cpp" />
+    <ClCompile Include="TexturedTriangle.cpp">
+      <Filter>Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -98,6 +100,8 @@
     <ClInclude Include="Environment.h">
       <Filter>Cottage</Filter>
     </ClInclude>
-    <ClInclude Include="TexturedTriangle.h" />
+    <ClInclude Include="TexturedTriangle.h">
+      <Filter>Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
