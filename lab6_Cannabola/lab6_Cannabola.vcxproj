@@ -131,14 +131,24 @@
     <ClCompile Include="BaseWindow.cpp" />
     <ClCompile Include="GLFWInitializer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProgramBase.cpp" />
+    <ClCompile Include="ProgramLinker.cpp" />
     <ClCompile Include="ShaderBase.cpp" />
+    <ClCompile Include="ShaderCompiler.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="common_inc.h" />
     <ClInclude Include="GLFWInitializer.h" />
+    <ClInclude Include="ProgramBase.h" />
+    <ClInclude Include="ProgramImpl.h" />
+    <ClInclude Include="ProgramLinker.h" />
     <ClInclude Include="ShaderBase.h" />
+    <ClInclude Include="ShaderCompiler.h" />
+    <ClInclude Include="ShaderImpl.h" />
+    <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
