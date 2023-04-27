@@ -8,10 +8,10 @@ GLFWInitializer::GLFWInitializer()
 	}
 
 	glewInit();
-	if (!GLEW_ARB_shader_objects)
+	/*if (!GLEW_ARB_shader_objects)
 	{
 		throw std::runtime_error("Shaders are not supported");
-	}
+	}*/
 }
 
 GLFWInitializer::~GLFWInitializer()

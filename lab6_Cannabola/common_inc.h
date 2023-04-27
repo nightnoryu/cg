@@ -4,8 +4,9 @@
 #pragma comment(lib, "opengl32.lib")
 #endif
 
-#include <windows.h>
+#define GLEW_STATIC
 #include <GL/glew.h>
+#include <windows.h>
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include <GLFW/glfw3.h>
@@ -18,3 +19,4 @@
 #include <stdexcept>
 #include <vector>
 #include <sstream>
+#include <iostream>

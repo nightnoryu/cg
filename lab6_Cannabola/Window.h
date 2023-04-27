@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseWindow.h"
+#include "ProgramImpl.h"
 
 class Window : public BaseWindow
 {
@@ -11,7 +12,11 @@ private:
 	void OnResize(int width, int height) override;
 	void OnRunStart() override;
 
+	void InitShaders();
+
 	void Draw(int width, int height) const override;
 
 	void SetupCameraMatrix() const;
+
+	Program m_program;
 };
