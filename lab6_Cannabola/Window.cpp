@@ -1,4 +1,7 @@
 ﻿#include "Window.h"
+#include "ShaderLoader.h"
+#include "ShaderCompiler.h"
+#include "ProgramLinker.h"
 
 namespace
 {
@@ -35,11 +38,30 @@ void Window::OnRunStart()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
+
+	InitShaders();
 }
 
 void Window::InitShaders()
 {
-	// TODO
+	ShaderLoader loader;
+	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/vertex.vsh");
+	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/checker.fsh");
+
+	ShaderCompiler compiler;
+	compiler.Compile(vertexShader);
+	compiler.Compile(fragmentShader);
+
+	m_program.Create();
+	m_program.AttachShader(vertexShader);
+	m_program.AttachShader(fragmentShader);
+
+	compiler.CheckStatus();
+
+	ProgramLinker linker;
+	linker.LinkProgram(m_program);
+
+	linker.CheckStatus();
 }
 
 void Window::Draw(int width, int height) const

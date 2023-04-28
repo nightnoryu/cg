@@ -5,6 +5,8 @@
 class ShaderCompiler
 {
 public:
+	ShaderCompiler() = default;
+
 	ShaderCompiler(ShaderCompiler const&) = delete;
 	ShaderCompiler& operator=(ShaderCompiler const&) = delete;
 
