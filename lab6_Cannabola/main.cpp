@@ -1,16 +1,9 @@
-#include "GLFWInitializer.h"
-#include "Window.h"
+#include "Application.h"
+
+Application app("test");
 
 int main()
 {
-	try
-	{
-		GLFWInitializer initGLFW;
-		Window window{ 800, 600, "Cannabola" };
-		window.Run();
-	}
-	catch (std::exception const& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	app.MainLoop();
+	return 0;
 }
