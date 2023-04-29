@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseApplication.h"
+#include "ProgramImpl.h"
 
 class Application : public BaseApplication
 {
@@ -13,5 +14,7 @@ protected:
 	void OnReshape(int width, int height) override;
 
 private:
-	void FillEllipse(float x, float y, float rx, float ry, std::size_t points = 360);
+	void InitShaders();
+
+	Program m_program;
 };
