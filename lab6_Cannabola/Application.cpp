@@ -52,9 +52,11 @@ void Application::OnReshape(int width, int height)
 {
 	glViewport(0, 0, width, height);
 
+	double aspect = double(width) / double(height);
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, width, height, 0, -1, 1);
+	glOrtho(-aspect, +aspect, -1, 1, 0, 10);
 	glMatrixMode(GL_MODELVIEW);
 }
 
