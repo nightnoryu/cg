@@ -11,13 +11,12 @@ Application::Application(char const* title)
 void Application::OnInit()
 {
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.5, 0.5, 0.5, 1);
-	glColor3f(1, 1, 1);
+	glClearColor(1, 1, 1, 1);
 
 	glLoadIdentity();
 	gluLookAt(
-		0, 0, 3,
-		0, 0, 0,
+		std::numbers::pi, 0, 8,
+		std::numbers::pi, 0, 0,
 		0, 1, 0);
 
 	InitShaders();
@@ -27,21 +26,15 @@ void Application::OnDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glColor3f(0, 1, 0);
 	glUseProgram(m_program);
 
-	glBegin(GL_QUADS);
+	glBegin(GL_LINE_STRIP);
 	{
-		glTexCoord2f(0, 0);
-		glVertex2d(-0.8, -0.8);
-
-		glTexCoord2f(4, 0);
-		glVertex2d(0.8, -0.8);
-
-		glTexCoord2f(4, 4);
-		glVertex2d(0.8, 0.8);
-
-		glTexCoord2f(0, 4);
-		glVertex2d(-0.8, 0.8);
+		for (double x = 0; x <= 2 * std::numbers::pi; x += std::numbers::pi / 1000)
+		{
+			glVertex2d(x, 0);
+		}
 	}
 	glEnd();
 
@@ -56,23 +49,20 @@ void Application::OnReshape(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-aspect, +aspect, -1, 1, 0, 10);
+	glOrtho(-aspect, +aspect, -1, 1, 0, 60);
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void Application::InitShaders()
 {
 	ShaderLoader loader;
-	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/checker.vsh");
-	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/checker.fsh");
+	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/cannabola.vsh");
 
 	ShaderCompiler compiler;
 	compiler.Compile(vertexShader);
-	compiler.Compile(fragmentShader);
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
-	m_program.AttachShader(fragmentShader);
 
 	compiler.CheckStatus();
 

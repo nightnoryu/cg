@@ -1,6 +1,6 @@
 #include "Application.h"
 
-Application app("test");
+Application app("Cannabola");
 
 int main()
 {
@@ -10,6 +10,14 @@ int main()
 		return -1;
 	}
 
-	app.MainLoop();
+	try
+	{
+		app.MainLoop();
+	}
+	catch (std::exception const& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
 	return 0;
 }
