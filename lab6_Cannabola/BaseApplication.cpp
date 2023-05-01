@@ -20,7 +20,8 @@ BaseApplication::BaseApplication(char const* title, int width, int height, bool 
 	char const* argv[] = { "" };
 	glutInit(&argc, const_cast<char**>(argv));
 
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | (needDepth ? GLUT_DEPTH : 0) | (needStencil ? GLUT_STENCIL : 0));
+	glutInitDisplayMode(
+		GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE | (needDepth ? GLUT_DEPTH : 0) | (needStencil ? GLUT_STENCIL : 0));
 
 	if (width > 0 && height > 0)
 	{

@@ -11,6 +11,7 @@ Application::Application(char const* title)
 void Application::OnInit()
 {
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_MULTISAMPLE);
 	glClearColor(1, 1, 1, 1);
 
 	glLoadIdentity();
