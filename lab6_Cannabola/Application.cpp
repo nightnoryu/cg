@@ -15,8 +15,8 @@ void Application::OnInit()
 
 	glLoadIdentity();
 	gluLookAt(
-		std::numbers::pi, 0, 8,
-		std::numbers::pi, 0, 0,
+		0, 0.7, 5,
+		0, 0.7, 0,
 		0, 1, 0);
 
 	InitShaders();
@@ -26,7 +26,6 @@ void Application::OnDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glColor3f(0, 1, 0);
 	glUseProgram(m_program);
 
 	glBegin(GL_LINE_STRIP);
@@ -49,7 +48,7 @@ void Application::OnReshape(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-aspect, +aspect, -1, 1, 0, 60);
+	glOrtho(-aspect, +aspect, -1, 1, 1, 50);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -57,12 +56,15 @@ void Application::InitShaders()
 {
 	ShaderLoader loader;
 	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/cannabola.vsh");
+	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/cannabola.fsh");
 
 	ShaderCompiler compiler;
 	compiler.Compile(vertexShader);
+	compiler.Compile(fragmentShader);
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
+	m_program.AttachShader(fragmentShader);
 
 	compiler.CheckStatus();
 

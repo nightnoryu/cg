@@ -15,5 +15,5 @@ void main()
     position.x = R * cos(x);
     position.y = R * sin(x);
 
-    gl_Position = position;
+    gl_Position = gl_ModelViewProjectionMatrix * position;
 }
