@@ -15,8 +15,8 @@ void Application::OnInit()
 
 	glLoadIdentity();
 	gluLookAt(
-		0, 0.7, 5,
-		0, 0.7, 0,
+		0, 0, 3,
+		0, 0, 0,
 		0, 1, 0);
 
 	InitShaders();
@@ -26,6 +26,9 @@ void Application::OnDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glPushMatrix();
+	glScalef(0.7f, 0.7f, 1);
+	glTranslatef(0, -1, 0);
 	glUseProgram(m_program);
 
 	glBegin(GL_LINE_STRIP);
@@ -38,6 +41,7 @@ void Application::OnDisplay()
 	glEnd();
 
 	glUseProgram(0);
+	glPopMatrix();
 }
 
 void Application::OnReshape(int width, int height)
