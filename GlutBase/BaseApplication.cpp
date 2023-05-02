@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BaseApplication.h"
 
 BaseApplication* BaseApplication::m_application = nullptr;

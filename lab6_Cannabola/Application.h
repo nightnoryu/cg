@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common_inc.h"
 #include "BaseApplication.h"
 #include "ProgramImpl.h"
 

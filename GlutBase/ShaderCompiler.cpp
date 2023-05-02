@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ShaderCompiler.h"
 
 void ShaderCompiler::Compile(GLuint shader)

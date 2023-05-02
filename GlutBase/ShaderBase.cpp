@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ShaderBase.h"
 
 void ShaderBase::SetSource(GLsizei count, GLchar const** strings, GLint const* lengths)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common_inc.h"
+#include "pch.h"
 
 class ProgramBase
 {

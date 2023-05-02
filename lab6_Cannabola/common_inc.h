@@ -9,14 +9,7 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include <GL/glut.h>
-#include <glm/ext/matrix_clip_space.hpp>
-#include <glm/ext/matrix_transform.hpp>
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/ext.hpp>
 
 #include <numbers>
 #include <stdexcept>
-#include <vector>
-#include <sstream>
 #include <iostream>
-#include <fstream>

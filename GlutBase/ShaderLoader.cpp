@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ShaderLoader.h"
 
 GLuint ShaderLoader::LoadShader(GLenum shaderType, char const* fileName, GLuint shaderId)
