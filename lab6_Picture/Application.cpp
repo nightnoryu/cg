@@ -27,7 +27,25 @@ void Application::OnDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// TODO
+	glUseProgram(m_program);
+
+	glBegin(GL_QUADS);
+	{
+		glTexCoord2f(0, 0);
+		glVertex2f(-0.8, -0.8);
+
+		glTexCoord2f(4, 0);
+		glVertex2f(0.8, -0.8);
+
+		glTexCoord2f(4, 4);
+		glVertex2f(0.8, 0.8);
+
+		glTexCoord2f(0, 4);
+		glVertex2f(-0.8, 0.8);
+	}
+	glEnd();
+
+	glUseProgram(0);
 }
 
 void Application::OnReshape(int width, int height)
@@ -44,5 +62,22 @@ void Application::OnReshape(int width, int height)
 
 void Application::InitShaders()
 {
-	// TODO
+	ShaderLoader loader;
+	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/picture.vsh");
+	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/picture.fsh");
+
+	ShaderCompiler compiler;
+	compiler.Compile(vertexShader);
+	compiler.Compile(fragmentShader);
+
+	m_program.Create();
+	m_program.AttachShader(vertexShader);
+	m_program.AttachShader(fragmentShader);
+
+	compiler.CheckStatus();
+
+	ProgramLinker linker;
+	linker.LinkProgram(m_program);
+
+	linker.CheckStatus();
 }
