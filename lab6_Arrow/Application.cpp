@@ -69,24 +69,18 @@ void Application::InitShaders()
 	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/arrow.fsh");
 	Shader geometryShader = loader.LoadShader(GL_GEOMETRY_SHADER, "Shaders/arrow.gsh");
 
-	ShaderCompiler compiler;
-	compiler.Compile(vertexShader);
-	compiler.Compile(fragmentShader);
-	compiler.Compile(geometryShader);
+	ShaderCompiler::Compile(vertexShader);
+	ShaderCompiler::Compile(fragmentShader);
+	ShaderCompiler::Compile(geometryShader);
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
 	m_program.AttachShader(fragmentShader);
 	m_program.AttachShader(geometryShader);
 
-	compiler.CheckStatus();
-
 	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_LINES);
 	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_LINE_STRIP);
 	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 5);
 
-	ProgramLinker linker;
-	linker.LinkProgram(m_program);
-
-	linker.CheckStatus();
+	ProgramLinker::LinkProgram(m_program);
 }

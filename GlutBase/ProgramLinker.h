@@ -2,12 +2,8 @@
 
 #include "ProgramImpl.h"
 
-class ProgramLinker // TODO: strange architecture
+class ProgramLinker
 {
 public:
-	void LinkProgram(GLuint program);
-	void CheckStatus();
-
-private:
-	std::vector<GLuint> m_programs;
+	static void LinkProgram(GLuint program);
 };

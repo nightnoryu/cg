@@ -66,18 +66,12 @@ void Application::InitShaders()
 	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/picture.vsh");
 	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/picture.fsh");
 
-	ShaderCompiler compiler;
-	compiler.Compile(vertexShader);
-	compiler.Compile(fragmentShader);
+	ShaderCompiler::Compile(vertexShader);
+	ShaderCompiler::Compile(fragmentShader);
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
 	m_program.AttachShader(fragmentShader);
 
-	compiler.CheckStatus();
-
-	ProgramLinker linker;
-	linker.LinkProgram(m_program);
-
-	linker.CheckStatus();
+	ProgramLinker::LinkProgram(m_program);
 }

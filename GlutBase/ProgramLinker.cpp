@@ -5,29 +5,12 @@ void ProgramLinker::LinkProgram(GLuint program)
 {
 	ProgramHandle handle(program);
 	handle.Link();
-	m_programs.push_back(program);
-}
 
-void ProgramLinker::CheckStatus()
-{
-	std::stringstream strm;
-
-	bool hasErrors = false;
-
-	for (auto&& program : m_programs)
+	if (handle.GetParameter(GL_LINK_STATUS) != GL_TRUE)
 	{
-		ProgramHandle handle(program);
-		if (handle.GetParameter(GL_LINK_STATUS) != GL_TRUE)
-		{
-			hasErrors = true;
-			strm << "Program " << handle << " linkage failed: " << handle.GetInfoLog() << "\n";
-		}
-	}
+		std::stringstream message;
+		message << "Program " << handle << " linkage failed: " << handle.GetInfoLog();
 
-	m_programs.clear();
-
-	if (hasErrors)
-	{
-		throw std::runtime_error(strm.str());
+		throw std::runtime_error(message.str());
 	}
 }

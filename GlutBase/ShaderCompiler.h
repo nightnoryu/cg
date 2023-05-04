@@ -2,14 +2,8 @@
 
 #include "ShaderImpl.h"
 
-class ShaderCompiler // TODO: strange architecture
+class ShaderCompiler
 {
 public:
-	ShaderCompiler() = default;
-
-	void Compile(GLuint shader);
-	void CheckStatus();
-
-private:
-	std::vector<GLuint> m_shaders;
+	static void Compile(GLuint shader);
 };
