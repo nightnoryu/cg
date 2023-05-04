@@ -2,13 +2,10 @@
 
 #include "ShaderImpl.h"
 
-class ShaderCompiler
+class ShaderCompiler // TODO: strange architecture
 {
 public:
 	ShaderCompiler() = default;
-
-	ShaderCompiler(ShaderCompiler const&) = delete;
-	ShaderCompiler& operator=(ShaderCompiler const&) = delete;
 
 	void Compile(GLuint shader);
 	void CheckStatus();

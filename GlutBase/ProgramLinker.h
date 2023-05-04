@@ -2,7 +2,7 @@
 
 #include "ProgramImpl.h"
 
-class ProgramLinker
+class ProgramLinker // TODO: strange architecture
 {
 public:
 	void LinkProgram(GLuint program);
