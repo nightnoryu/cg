@@ -31,11 +31,14 @@ void Application::OnDisplay()
 
 	glBegin(GL_LINES);
 	{
-		glVertex2f(-0.5, -0.5);
-		glVertex2f(0.5, 0.5);
+		glVertex2f(-0.5f, -0.5f);
+		glVertex2f(0.5f, 0.5f);
 
-		glVertex2f(-0.5, 0.5);
-		glVertex2f(0.5, -0.5);
+		glVertex2f(-0.5f, 0.5f);
+		glVertex2f(0.5f, -0.5f);
+
+		glVertex2f(0, 0.1f);
+		glVertex2f(0, 0.5f);
 	}
 	glEnd();
 

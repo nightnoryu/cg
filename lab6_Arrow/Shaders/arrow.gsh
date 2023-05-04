@@ -10,11 +10,6 @@ vec4 RotateVector(vec4 vector, float angle)
 	return result;
 }
 
-vec4 TruncateVector(vec4 vector, float length)
-{
-	return normalize(vector) * length;
-}
-
 void main()
 {
 	vec4 start = gl_PositionIn[0];
@@ -29,12 +24,12 @@ void main()
 
 	EndPrimitive();
 
-	// Arrow ending
+	// Arrow endings
 	vec4 invertedArrowVector = start - end;
-	float endingsLength = length(invertedArrowVector) * 0.1;
+	float endingLength = length(invertedArrowVector) * 0.1;
 
-	vec4 leftEndingVector = normalize(RotateVector(start - end, radians(-15.0))) * 0.2;
-	vec4 rightEndingVector = normalize(RotateVector(start - end, radians(15.0))) * 0.2;
+	vec4 leftEndingVector = normalize(RotateVector(invertedArrowVector, radians(-15.0))) * endingLength;
+	vec4 rightEndingVector = normalize(RotateVector(invertedArrowVector, radians(15.0))) * endingLength;
 	
 	gl_Position = end + leftEndingVector;
 	EmitVertex();
