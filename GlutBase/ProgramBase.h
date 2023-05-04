@@ -19,6 +19,7 @@ public:
 	operator GLuint() const;
 
 	GLint GetParameter(GLenum name);
+	void SetParameter(GLenum name, GLint value);
 
 	std::string GetInfoLog();
 

@@ -66,6 +66,14 @@ GLint ProgramBase::GetParameter(GLenum name)
 	return value;
 }
 
+void ProgramBase::SetParameter(GLenum name, GLint value)
+{
+	if (m_program != 0)
+	{
+		glProgramParameteri(m_program, name, value);
+	}
+}
+
 std::string ProgramBase::GetInfoLog()
 {
 	GLint length = GetParameter(GL_INFO_LOG_LENGTH);
