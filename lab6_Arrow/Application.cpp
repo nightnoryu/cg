@@ -29,9 +29,14 @@ void Application::OnDisplay()
 
 	glUseProgram(m_program);
 
-	glBegin(GL_POINTS);
-	glVertex2f(-0.5, -0.5);
-	glVertex2f(0.5, 0.5);
+	glBegin(GL_LINES);
+	{
+		glVertex2f(-0.5, -0.5);
+		glVertex2f(0.5, 0.5);
+
+		glVertex2f(-0.5, 0.5);
+		glVertex2f(0.5, -0.5);
+	}
 	glEnd();
 
 	glUseProgram(0);
@@ -73,9 +78,9 @@ void Application::InitShaders()
 
 	compiler.CheckStatus();
 
-	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_POINTS);
-	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_TRIANGLE_STRIP);
-	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 4);
+	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_LINES);
+	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_LINE_STRIP);
+	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 5);
 
 	ProgramLinker linker;
 	linker.LinkProgram(m_program);

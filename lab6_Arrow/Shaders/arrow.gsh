@@ -1,45 +1,49 @@
 #version 120
 #extension GL_EXT_geometry_shader4 : enable
 
+vec4 RotateVector(vec4 vector, float angle)
+{
+	vec4 result = vector;
+	result.x = vector.x * cos(angle) - vector.y * sin(angle);
+	result.y = vector.x * sin(angle) + vector.y * cos(angle);
+
+	return result;
+}
+
+vec4 TruncateVector(vec4 vector, float length)
+{
+	return normalize(vector) * length;
+}
+
 void main()
 {
-	// Half size of the rectangle
-	vec2 halfSize = vec2(1.0, 1.0) * 0.5;
+	vec4 start = gl_PositionIn[0];
+	vec4 end = gl_PositionIn[1];
 
-	// Rectangle center is a position of the original primitive
-	vec4 center = gl_PositionIn[0];
-
-	/*
-	 *  Emit four vertices of the output triangle strip to form a quad
-	 *     of size w*h
-	 *
-	 *  2----w----3
-	 *  |         |
-	 *  |    x    h
-	 *  |         |
-	 *  0---------1
-	 */
-
-	// Bottom left
-	gl_Position = center + vec4(-halfSize.x, -halfSize.y, 0.0, 0.0);
-	gl_TexCoord[0].xy = vec2(0.0, 1.0);
+	// Initial line
+	gl_Position = start;
 	EmitVertex();
 
-	// Bottom right
-	gl_Position = center + vec4(halfSize.x, -halfSize.y, 0.0, 0.0);
-	gl_TexCoord[0].xy = vec2(1.0, 1.0);
+	gl_Position = end;
 	EmitVertex();
 
-	// Top left
-	gl_Position = center + vec4(-halfSize.x, +halfSize.x, 0.0, 0.0);
-	gl_TexCoord[0].xy = vec2(0.0, 0.0);
+	EndPrimitive();
+
+	// Arrow ending
+	vec4 invertedArrowVector = start - end;
+	float endingsLength = length(invertedArrowVector) * 0.1;
+
+	vec4 leftEndingVector = normalize(RotateVector(start - end, radians(-15.0))) * 0.2;
+	vec4 rightEndingVector = normalize(RotateVector(start - end, radians(15.0))) * 0.2;
+	
+	gl_Position = end + leftEndingVector;
 	EmitVertex();
 
-	// Top right
-	gl_Position = center + vec4(+halfSize.x, +halfSize.y, 0.0, 0.0);
-	gl_TexCoord[0].xy = vec2(1.0, 0.0);
+	gl_Position = end;
 	EmitVertex();
 
-	// Emit a triangle strip
+	gl_Position = end + rightEndingVector;
+	EmitVertex();
+
 	EndPrimitive();
 }
