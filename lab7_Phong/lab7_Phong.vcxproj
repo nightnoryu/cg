@@ -76,6 +76,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Documents\Educational\6_ComputerGraphics\cg\GlutBase;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +92,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Documents\Educational\6_ComputerGraphics\cg\GlutBase;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,7 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\gnutella\Documents\Educational\cg\GlutBase;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\Educational\6_ComputerGraphics\cg\GlutBase;C:\Users\gnutella\Documents\Educational\cg\GlutBase;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +124,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Documents\Educational\6_ComputerGraphics\cg\GlutBase;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +159,8 @@
     <Import Project="..\packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('..\packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" />
     <Import Project="..\packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets" Condition="Exists('..\packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" />
     <Import Project="..\packages\boost.1.82.0\build\boost.targets" Condition="Exists('..\packages\boost.1.82.0\build\boost.targets')" />
+    <Import Project="..\packages\boost_thread-vc143.1.82.0\build\boost_thread-vc143.targets" Condition="Exists('..\packages\boost_thread-vc143.1.82.0\build\boost_thread-vc143.targets')" />
+    <Import Project="..\packages\boost_chrono-vc143.1.82.0\build\boost_chrono-vc143.targets" Condition="Exists('..\packages\boost_chrono-vc143.1.82.0\build\boost_chrono-vc143.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -161,5 +169,7 @@
     <Error Condition="!Exists('..\packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets'))" />
     <Error Condition="!Exists('..\packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets'))" />
     <Error Condition="!Exists('..\packages\boost.1.82.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.82.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_thread-vc143.1.82.0\build\boost_thread-vc143.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_thread-vc143.1.82.0\build\boost_thread-vc143.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_chrono-vc143.1.82.0\build\boost_chrono-vc143.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_chrono-vc143.1.82.0\build\boost_chrono-vc143.targets'))" />
   </Target>
 </Project>
