@@ -23,7 +23,7 @@ public:
 
 	GLuint GetParameter(GLenum name) const;
 
-	std::string GetInfoLog();
+	std::string GetInfoLog() const;
 
 protected:
 	ShaderBase(GLuint shader = 0);

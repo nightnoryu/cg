@@ -22,6 +22,14 @@ void ProgramBase::Link() const
 	if (m_program != 0)
 	{
 		glLinkProgram(m_program);
+
+		if (GetParameter(GL_LINK_STATUS) != GL_TRUE)
+		{
+			std::stringstream message;
+			message << "Program " << m_program << " linkage failed: " << GetInfoLog();
+
+			throw std::runtime_error(message.str());
+		}
 	}
 }
 
@@ -59,7 +67,7 @@ ProgramBase::operator GLuint() const
 	return m_program;
 }
 
-GLint ProgramBase::GetParameter(GLenum name)
+GLint ProgramBase::GetParameter(GLenum name) const
 {
 	GLint value;
 	glGetProgramiv(m_program, name, &value);
@@ -74,7 +82,7 @@ void ProgramBase::SetParameter(GLenum name, GLint value)
 	}
 }
 
-std::string ProgramBase::GetInfoLog()
+std::string ProgramBase::GetInfoLog() const
 {
 	GLint length = GetParameter(GL_INFO_LOG_LENGTH);
 	if (length > 0)

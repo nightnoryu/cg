@@ -18,10 +18,10 @@ public:
 
 	operator GLuint() const;
 
-	GLint GetParameter(GLenum name);
+	GLint GetParameter(GLenum name) const;
 	void SetParameter(GLenum name, GLint value);
 
-	std::string GetInfoLog();
+	std::string GetInfoLog() const;
 
 protected:
 	ProgramBase(GLuint program = 0);

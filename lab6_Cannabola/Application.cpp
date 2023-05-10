@@ -1,6 +1,4 @@
 #include "Application.h"
-#include "ProgramLinker.h"
-#include "ShaderCompiler.h"
 #include "ShaderLoader.h"
 
 Application::Application(char const* title)
@@ -63,12 +61,12 @@ void Application::InitShaders()
 	Shader vertexShader = loader.LoadShader(GL_VERTEX_SHADER, "Shaders/cannabola.vsh");
 	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/cannabola.fsh");
 
-	ShaderCompiler::Compile(vertexShader);
-	ShaderCompiler::Compile(fragmentShader);
+	vertexShader.Compile();
+	fragmentShader.Compile();
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
 	m_program.AttachShader(fragmentShader);
 
-	ProgramLinker::LinkProgram(m_program);
+	m_program.Link();
 }

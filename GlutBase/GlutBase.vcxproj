@@ -143,9 +143,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProgramBase.h" />
     <ClInclude Include="ProgramImpl.h" />
-    <ClInclude Include="ProgramLinker.h" />
     <ClInclude Include="ShaderBase.h" />
-    <ClInclude Include="ShaderCompiler.h" />
     <ClInclude Include="ShaderImpl.h" />
     <ClInclude Include="ShaderLoader.h" />
   </ItemGroup>
@@ -158,9 +156,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ProgramBase.cpp" />
-    <ClCompile Include="ProgramLinker.cpp" />
     <ClCompile Include="ShaderBase.cpp" />
-    <ClCompile Include="ShaderCompiler.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>

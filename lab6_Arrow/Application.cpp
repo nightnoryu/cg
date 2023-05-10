@@ -1,6 +1,4 @@
 #include "Application.h"
-#include "ProgramLinker.h"
-#include "ShaderCompiler.h"
 #include "ShaderLoader.h"
 
 Application::Application(char const* title)
@@ -69,9 +67,9 @@ void Application::InitShaders()
 	Shader fragmentShader = loader.LoadShader(GL_FRAGMENT_SHADER, "Shaders/arrow.fsh");
 	Shader geometryShader = loader.LoadShader(GL_GEOMETRY_SHADER, "Shaders/arrow.gsh");
 
-	ShaderCompiler::Compile(vertexShader);
-	ShaderCompiler::Compile(fragmentShader);
-	ShaderCompiler::Compile(geometryShader);
+	vertexShader.Compile();
+	fragmentShader.Compile();
+	geometryShader.Compile();
 
 	m_program.Create();
 	m_program.AttachShader(vertexShader);
@@ -82,5 +80,5 @@ void Application::InitShaders()
 	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_LINE_STRIP);
 	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 5);
 
-	ProgramLinker::LinkProgram(m_program);
+	m_program.Link();
 }

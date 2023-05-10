@@ -26,6 +26,14 @@ void ShaderBase::Compile()
 	if (m_shader != 0)
 	{
 		glCompileShader(m_shader);
+
+		if (GetParameter(GL_COMPILE_STATUS) != GL_TRUE)
+		{
+			std::stringstream message;
+			message << "Shader " << m_shader << " compilation failed: " << GetInfoLog();
+
+			throw std::runtime_error(message.str());
+		}
 	}
 }
 
@@ -62,7 +70,7 @@ GLuint ShaderBase::GetParameter(GLenum name) const
 	return value;
 }
 
-std::string ShaderBase::GetInfoLog()
+std::string ShaderBase::GetInfoLog() const
 {
 	GLint length = GetParameter(GL_INFO_LOG_LENGTH);
 	if (length > 0)
