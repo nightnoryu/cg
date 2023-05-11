@@ -10,16 +10,21 @@ vec4 RotateVector(vec4 vector, float angle)
 	return result;
 }
 
+vec4 ApplyModelViewProjectionMatrix(vec4 vertex)
+{
+	return vertex * gl_ModelViewProjectionMatrix;
+}
+
 void main()
 {
 	vec4 start = gl_PositionIn[0];
 	vec4 end = gl_PositionIn[1];
 
 	// Initial line
-	gl_Position = start;
+	gl_Position = ApplyModelViewProjectionMatrix(start);
 	EmitVertex();
 
-	gl_Position = end;
+	gl_Position = ApplyModelViewProjectionMatrix(end);
 	EmitVertex();
 
 	EndPrimitive();
@@ -30,14 +35,14 @@ void main()
 
 	vec4 leftEndingVector = normalize(RotateVector(invertedArrowVector, radians(-15.0))) * endingLength;
 	vec4 rightEndingVector = normalize(RotateVector(invertedArrowVector, radians(15.0))) * endingLength;
-	
-	gl_Position = end + leftEndingVector;
+
+	gl_Position = ApplyModelViewProjectionMatrix(end + leftEndingVector);
 	EmitVertex();
 
-	gl_Position = end;
+	gl_Position = ApplyModelViewProjectionMatrix(end);
 	EmitVertex();
 
-	gl_Position = end + rightEndingVector;
+	gl_Position = ApplyModelViewProjectionMatrix(end + rightEndingVector);
 	EmitVertex();
 
 	EndPrimitive();
