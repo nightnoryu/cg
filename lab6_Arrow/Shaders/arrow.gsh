@@ -12,7 +12,7 @@ vec4 RotateVector(vec4 vector, float angle)
 
 vec4 ApplyModelViewProjectionMatrix(vec4 vertex)
 {
-	return vertex * gl_ModelViewProjectionMatrix;
+	return gl_ModelViewProjectionMatrix * vertex;
 }
 
 void main()
