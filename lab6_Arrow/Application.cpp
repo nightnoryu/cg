@@ -27,7 +27,6 @@ void Application::OnDisplay()
 
 	glUseProgram(m_program);
 
-	// TODO: угол не должен зависеть от ширины окна
 	glBegin(GL_LINES);
 	{
 		glVertex2f(-0.5f, -0.5f);
