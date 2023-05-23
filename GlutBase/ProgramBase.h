@@ -23,6 +23,8 @@ public:
 
 	std::string GetInfoLog() const;
 
+	GLint GetUniformLocation(GLchar const* name) const;
+
 protected:
 	ProgramBase(GLuint program = 0);
 

@@ -96,6 +96,11 @@ std::string ProgramBase::GetInfoLog() const
 	return {};
 }
 
+GLint ProgramBase::GetUniformLocation(GLchar const* name) const
+{
+	return glGetUniformLocation(m_program, name);
+}
+
 ProgramBase::ProgramBase(GLuint program)
 	: m_program(program)
 {
