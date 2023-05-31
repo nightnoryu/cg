@@ -347,7 +347,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneObject.cpp" />
-    <ClCompile Include="SimpleDiffuseShader.cpp" />
+    <ClCompile Include="SimpleLightShader.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -391,7 +391,7 @@
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SceneObject_fwd.h" />
     <ClInclude Include="ShadeContext.h" />
-    <ClInclude Include="SimpleDiffuseShader.h" />
+    <ClInclude Include="SimpleLightShader.h" />
     <ClInclude Include="SimpleMaterial.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stdafx.h" />

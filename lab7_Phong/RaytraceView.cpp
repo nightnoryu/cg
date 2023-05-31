@@ -14,7 +14,7 @@
 #include "Ray.h"
 #include "RaytraceView.h"
 #include "SceneObject.h"
-#include "SimpleDiffuseShader.h"
+#include "SimpleLightShader.h"
 #include "SimpleMaterial.h"
 #include "Sphere.h"
 #include "TriangleMesh.h"
@@ -71,7 +71,7 @@ void CRaytraceView::AddSomeSpheres()
 	CSimpleMaterial yellow;
 	yellow.SetAmbientColor(CVector4f(1, 1, 0, 1));
 	yellow.SetDiffuseColor(CVector4f(1, 1, 0, 1));
-	CSimpleDiffuseShader& shader = CreateSimpleDiffuseShader(yellow);
+	CSimpleLightShader& shader = CreateSimpleDiffuseShader(yellow);
 	AddSphere(shader, 1, CVector3d(0, 1, 0));
 	AddSphere(shader, 0.5, CVector3d(2, 0, 0));
 }
@@ -321,9 +321,9 @@ CSceneObject& CRaytraceView::AddSceneObject(IGeometryObject const& object, IShad
 	return *obj;
 }
 
-CSimpleDiffuseShader& CRaytraceView::CreateSimpleDiffuseShader(CSimpleMaterial const& material)
+CSimpleLightShader& CRaytraceView::CreateSimpleDiffuseShader(CSimpleMaterial const& material)
 {
-	auto shader = std::make_unique<CSimpleDiffuseShader>(material);
+	auto shader = std::make_unique<CSimpleLightShader>(material);
 	auto& shaderRef = *shader;
 	m_shaders.emplace_back(std::move(shader));
 	return shaderRef;

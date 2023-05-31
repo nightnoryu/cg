@@ -1,12 +1,12 @@
 ﻿#include "stdafx.h"
-#include "SimpleDiffuseShader.h"
+#include "SimpleLightShader.h"
 #include "ILightSource.h"
 #include "Scene.h"
 #include "ShadeContext.h"
 #include "Vector4.h"
 #include "VectorMath.h"
 
-CSimpleDiffuseShader::CSimpleDiffuseShader(CSimpleMaterial const& material)
+CSimpleLightShader::CSimpleLightShader(CSimpleMaterial const& material)
 	: m_material(material)
 {
 }
@@ -14,12 +14,12 @@ CSimpleDiffuseShader::CSimpleDiffuseShader(CSimpleMaterial const& material)
 /*
 Запоминаем параметры материала, связанного с шейдером
 */
-void CSimpleDiffuseShader::SetMaterial(CSimpleMaterial const& material)
+void CSimpleLightShader::SetMaterial(CSimpleMaterial const& material)
 {
 	m_material = material;
 }
 
-CVector4f CSimpleDiffuseShader::Shade(CShadeContext const& shadeContext) const
+CVector4f CSimpleLightShader::Shade(CShadeContext const& shadeContext) const
 {
 	/*
 	Получаем сцену из контекста закрашивания для того, чтобы вычислить вклад

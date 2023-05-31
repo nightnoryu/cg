@@ -11,7 +11,7 @@
 
 class CFrameBuffer;
 
-class CSimpleDiffuseShader;
+class CSimpleLightShader;
 class CConicCylinder;
 class CSphere;
 class CCheckerShader;
@@ -64,7 +64,7 @@ private:
 	bool UpdateFrameBuffer();
 
 	// Методы создания и добавления шейдеров в коллекцию m_shaders
-	CSimpleDiffuseShader & CreateSimpleDiffuseShader(CSimpleMaterial const& material);
+	CSimpleLightShader & CreateSimpleDiffuseShader(CSimpleMaterial const& material);
 	CCheckerShader & CreateCheckerShader(CMatrix4d const& textureTransform);
 
 	// Методы, создающие и добавляющие объекты к сцене
