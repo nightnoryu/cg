@@ -1,14 +1,13 @@
 ﻿#include "stdafx.h"
 #include "SimpleDiffuseShader.h"
-#include "Vector4.h"
+#include "ILightSource.h"
 #include "Scene.h"
 #include "ShadeContext.h"
-#include "ILightSource.h"
+#include "Vector4.h"
 #include "VectorMath.h"
 
-
 CSimpleDiffuseShader::CSimpleDiffuseShader(CSimpleMaterial const& material)
-:m_material(material)
+	: m_material(material)
 {
 }
 
@@ -20,7 +19,7 @@ void CSimpleDiffuseShader::SetMaterial(CSimpleMaterial const& material)
 	m_material = material;
 }
 
-CVector4f CSimpleDiffuseShader::Shade(CShadeContext const & shadeContext)const
+CVector4f CSimpleDiffuseShader::Shade(CShadeContext const& shadeContext) const
 {
 	/*
 	Получаем сцену из контекста закрашивания для того, чтобы вычислить вклад
@@ -50,13 +49,12 @@ CVector4f CSimpleDiffuseShader::Shade(CShadeContext const & shadeContext)const
 
 		// Вычисляем скалярное произведение нормали и орт-вектора направления на источник света
 		double nDotL = Max(Dot(n, Normalize(lightDirection)), 0.0);
-		
-		// Вычисляем диффузный цвет точки
+
+		CVector4f ambientColor = light.GetAmbientIntensity() * m_material.GetAmbientColor() * 0.1;
 		CVector4f diffuseColor = static_cast<float>(nDotL * lightIntensity) * light.GetDiffuseIntensity() * m_material.GetDiffuseColor();
 
-		// К результирующему цвету прибавляется вычисленный диффузный цвет
-		shadedColor += diffuseColor;
-	}	// Проделываем данные действия для других источников света
+		shadedColor = ambientColor + diffuseColor;
+	}
 
 	// Возвращаем результирующий цвет точки
 	return shadedColor;

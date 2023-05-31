@@ -69,6 +69,7 @@ void CRaytraceView::AddSomePlane()
 void CRaytraceView::AddSomeSpheres()
 {
 	CSimpleMaterial yellow;
+	yellow.SetAmbientColor(CVector4f(1, 1, 0, 1));
 	yellow.SetDiffuseColor(CVector4f(1, 1, 0, 1));
 	CSimpleDiffuseShader& shader = CreateSimpleDiffuseShader(yellow);
 	AddSphere(shader, 1, CVector3d(0, 1, 0));
@@ -79,7 +80,9 @@ void CRaytraceView::AddSomeSpheres()
 void CRaytraceView::AddSomeLight()
 {
 	COmniLightPtr pLight(new COmniLightSource(CVector3d(-5, 5, 10)));
+	pLight->SetAmbientIntensity(CVector4f(1, 1, 1, 1));
 	pLight->SetDiffuseIntensity(CVector4f(1, 1, 1, 1));
+	pLight->SetSpecularIntensity(CVector4f(1, 1, 1, 1));
 	pLight->SetAttenuation(1, 0, 0.0005);
 	m_scene.AddLightSource(pLight);
 }
@@ -88,6 +91,7 @@ void CRaytraceView::AddSomeLight()
 void CRaytraceView::AddSomeConicCylinders()
 {
 	CSimpleMaterial white;
+	white.SetAmbientColor(CVector4f(1, 1, 1, 1));
 	white.SetDiffuseColor(CVector4f(1, 1, 1, 1));
 
 	CMatrix4d transform;
@@ -97,6 +101,7 @@ void CRaytraceView::AddSomeConicCylinders()
 	AddConicCylinder(CreateSimpleDiffuseShader(white), 2, 1, 1, transform);
 
 	CSimpleMaterial red;
+	red.SetAmbientColor(CVector4f(1, 0, 0, 1));
 	red.SetDiffuseColor(CVector4f(1, 0, 0, 1));
 	CMatrix4d coneTransform;
 	coneTransform.Translate(0, 0, 2);
@@ -108,6 +113,7 @@ void CRaytraceView::AddSomeConicCylinders()
 	conicFrustumTransform.Translate(4.0, 0.0, 0.0);
 	conicFrustumTransform.Rotate(-90, 1, 0, 0);
 	CSimpleMaterial green;
+	green.SetAmbientColor(CVector4f(0, 1, 0, 1));
 	green.SetDiffuseColor(CVector4f(0, 1, 0, 1));
 	AddConicCylinder(CreateSimpleDiffuseShader(green), 1, 0.5, 0.3, conicFrustumTransform);
 }
@@ -140,6 +146,7 @@ void CRaytraceView::AddSomeTetrahedron()
 	transform.Translate(3, 0.3, -1);
 	transform.Rotate(170, 0, 1, 0);
 	CSimpleMaterial blue;
+	blue.SetAmbientColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetDiffuseColor(CVector4f(0.5f, 0.8f, 1, 1));
 
 	AddTriangleMesh(CreateSimpleDiffuseShader(blue), pMeshData, transform);

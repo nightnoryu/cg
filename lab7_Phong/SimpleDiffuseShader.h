@@ -5,8 +5,7 @@
 /*
 Простой шейдер, выполняющий расчет диффузной составляющей отраженного света
 */
-class CSimpleDiffuseShader :
-	public IShader
+class CSimpleDiffuseShader : public IShader
 {
 public:
 	CSimpleDiffuseShader(CSimpleMaterial const& material = CSimpleMaterial());
@@ -20,7 +19,8 @@ public:
 	/*
 	Вычисление цвета с объекта
 	*/
-	virtual CVector4f Shade(CShadeContext const & shadeContext)const;
+	virtual CVector4f Shade(CShadeContext const& shadeContext) const;
+
 private:
 	CSimpleMaterial m_material;
 };
