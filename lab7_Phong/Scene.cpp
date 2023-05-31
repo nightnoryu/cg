@@ -7,8 +7,9 @@
 #include "SceneObject.h"
 #include "ShadeContext.h"
 
-CScene::CScene(CMatrix4d const& modelViewMatrix)
+CScene::CScene(CMatrix4d const& modelViewMatrix, CVector3d const& cameraPosition)
 	: m_modelViewMatrix(modelViewMatrix)
+	, m_cameraPosition(cameraPosition)
 {
 }
 
@@ -136,4 +137,9 @@ bool CScene::GetFirstHit(CRay const& ray, CIntersection& bestIntersection, CScen
 CMatrix4d const& CScene::GetModelViewMatrix() const
 {
 	return m_modelViewMatrix;
+}
+
+CVector3d const& CScene::GetCameraPosition() const
+{
+	return m_cameraPosition;
 }

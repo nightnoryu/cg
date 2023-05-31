@@ -35,24 +35,19 @@ CVector4f CSimpleLightShader::Shade(CShadeContext const& shadeContext) const
 	// Пробегаемся по всем источникам света в сцене
 	for (size_t i = 0; i < numLights; ++i)
 	{
-		// Получаем источник света
 		ILightSource const& light = scene.GetLight(i);
-
-		// Вычисляем вектор направления на источник света из текущей точке
 		CVector3d lightDirection = light.GetDirectionFromPoint(shadeContext.GetSurfacePoint());
-
-		// Вычисляем интенсивность света в направлении от источника к текущей точке
-		double lightIntensity = light.GetIntensityInDirection(-lightDirection);
-
-		// Получаем нормаль к поверхности в обрабатываемой точке
 		CVector3d const& n = shadeContext.GetSurfaceNormal();
+
+		double lightIntensity = light.GetIntensityInDirection(-lightDirection);
 
 		// Вычисляем скалярное произведение нормали и орт-вектора направления на источник света
 		double nDotL = Max(Dot(n, Normalize(lightDirection)), 0.0);
 
 		// Модель освещения Фонга: https://habr.com/ru/articles/441862/
+
 		CVector3d reflectDirection = Reflect(-lightDirection, n);
-		CVector3d viewDirection = Normalize(-(scene.GetModelViewMatrix() * CVector4d(0, 3, 7, 1)));
+		CVector3d viewDirection = Normalize(-(scene.GetModelViewMatrix() * CVector4d(scene.GetCameraPosition(), 1)));
 		double spec = std::pow(Max(Dot(viewDirection, reflectDirection), 0.0), 128);
 
 		CVector4f ambientColor = light.GetAmbientIntensity() * m_material.GetAmbientColor() * 0.1;

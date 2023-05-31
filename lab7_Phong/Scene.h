@@ -16,7 +16,7 @@ class CIntersection;
 class CScene
 {
 public:
-	explicit CScene(CMatrix4d const& modelViewMatrix);
+	explicit CScene(CMatrix4d const& modelViewMatrix, CVector3d const& cameraPosition);
 
 	// Задать цвет заднего фона сцены
 	void SetBackdropColor(CVector4f const& backdropColor);
@@ -53,8 +53,11 @@ public:
 
 	CMatrix4d const& GetModelViewMatrix() const;
 
+	CVector3d const& GetCameraPosition() const;
+
 private:
 	CMatrix4d const& m_modelViewMatrix;
+	CVector3d m_cameraPosition;
 
 	// Коллекция объектов сцены
 	typedef std::vector<CSceneObjectPtr> SceneObjects;

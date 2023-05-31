@@ -21,7 +21,7 @@
 
 CRaytraceView::CRaytraceView()
 	: m_pFrameBuffer(std::make_unique<CFrameBuffer>(800, 600))
-	, m_scene(m_modelViewMatrix)
+	, m_scene(m_modelViewMatrix, CVector3d(0, 3, 7))
 {
 	/*
 	Задаем цвет заднего фона сцены
