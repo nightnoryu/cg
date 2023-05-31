@@ -50,10 +50,20 @@ CVector4f CSimpleLightShader::Shade(CShadeContext const& shadeContext) const
 		// Вычисляем скалярное произведение нормали и орт-вектора направления на источник света
 		double nDotL = Max(Dot(n, Normalize(lightDirection)), 0.0);
 
+		CMatrix4d modelView;
+		modelView.LoadLookAtRH(
+			0, 3, 7,
+			0, 0, 0,
+			0, 1, 0);
+		CVector3d reflectDirection = Reflect(-lightDirection, n);
+		CVector3d viewDirection = -(modelView * CVector4d(shadeContext.GetSurfacePoint(), 1));
+		double spec = std::pow(Max(Dot(viewDirection, reflectDirection), 0.0), 32);
+
 		CVector4f ambientColor = light.GetAmbientIntensity() * m_material.GetAmbientColor() * 0.1;
 		CVector4f diffuseColor = static_cast<float>(nDotL * lightIntensity) * light.GetDiffuseIntensity() * m_material.GetDiffuseColor();
+		CVector4f specularColor = CVector4f(0.3f, 0.3f, 0.3f, 0.5f) * spec * 0.3f;
 
-		shadedColor = ambientColor + diffuseColor;
+		shadedColor = ambientColor + diffuseColor + specularColor;
 	}
 
 	// Возвращаем результирующий цвет точки
