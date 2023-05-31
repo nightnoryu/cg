@@ -21,6 +21,7 @@
 
 CRaytraceView::CRaytraceView()
 	: m_pFrameBuffer(std::make_unique<CFrameBuffer>(800, 600))
+	, m_scene(m_modelViewMatrix)
 {
 	/*
 	Задаем цвет заднего фона сцены
@@ -46,12 +47,11 @@ CRaytraceView::CRaytraceView()
 	m_context.SetProjectionMatrix(proj);
 
 	// Задаем матрицу камеры
-	CMatrix4d modelView;
-	modelView.LoadLookAtRH(
+	m_modelViewMatrix.LoadLookAtRH(
 		0, 3, 7,
 		0, 0, 0,
 		0, 1, 0);
-	m_context.SetModelViewMatrix(modelView);
+	m_context.SetModelViewMatrix(m_modelViewMatrix);
 }
 
 // Добавляем бесконечную шахматную плоскость y = 0

@@ -79,6 +79,7 @@ private:
 	CRenderContext m_context;
 	CRenderer m_renderer;
 	CScene	m_scene;
+	CMatrix4d m_modelViewMatrix;
 
 	std::unique_ptr<CFrameBuffer> m_pFrameBuffer;
 

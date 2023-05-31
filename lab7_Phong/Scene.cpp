@@ -1,13 +1,14 @@
 ﻿#include "stdafx.h"
 #include "Scene.h"
-#include "Ray.h"
-#include "Intersection.h"
 #include "IGeometryObject.h"
-#include "SceneObject.h"
 #include "IShader.h"
+#include "Intersection.h"
+#include "Ray.h"
+#include "SceneObject.h"
 #include "ShadeContext.h"
 
-CScene::CScene(void)
+CScene::CScene(CMatrix4d const& modelViewMatrix)
+	: m_modelViewMatrix(modelViewMatrix)
 {
 }
 
@@ -31,7 +32,7 @@ void CScene::AddLightSource(ILightSourcePtr pLightSource)
 /*
 Возврат количества источников света в сцене
 */
-size_t CScene::GetLightsCount()const
+size_t CScene::GetLightsCount() const
 {
 	return m_lightSources.size();
 }
@@ -39,7 +40,7 @@ size_t CScene::GetLightsCount()const
 /*
 Возвращаем ссылку на источник света с указанным индексом
 */
-ILightSource const& CScene::GetLight(size_t index)const
+ILightSource const& CScene::GetLight(size_t index) const
 {
 	assert(index < m_lightSources.size());
 
@@ -54,10 +55,10 @@ void CScene::AddObject(CSceneObjectPtr pSceneObject)
 	m_objects.push_back(pSceneObject);
 }
 
-CVector4f CScene::Shade(CRay const& ray)const
+CVector4f CScene::Shade(CRay const& ray) const
 {
 	CIntersection bestIntersection;
-	CSceneObject const * pSceneObject = NULL;
+	CSceneObject const* pSceneObject = NULL;
 
 	// Находим первое столкновение луча со сценой
 	if (GetFirstHit(ray, bestIntersection, &pSceneObject))
@@ -77,8 +78,7 @@ CVector4f CScene::Shade(CRay const& ray)const
 				hit.GetHitPoint(),
 				hit.GetHitPointInObjectSpace(),
 				hit.GetNormal(),
-				ray.GetDirection()
-				);
+				ray.GetDirection());
 
 			// Шейдер, связанный с объектом, выполнит вычисление цвета
 			return shader.Shade(shadeContext);
@@ -90,7 +90,7 @@ CVector4f CScene::Shade(CRay const& ray)const
 	return m_backdropColor;
 }
 
-bool CScene::GetFirstHit(CRay const& ray, CIntersection & bestIntersection, CSceneObject const ** ppIntersectionObject)const
+bool CScene::GetFirstHit(CRay const& ray, CIntersection& bestIntersection, CSceneObject const** ppIntersectionObject) const
 {
 	// Очищаем информацию о точках столкновения
 	bestIntersection.Clear();
@@ -109,7 +109,7 @@ bool CScene::GetFirstHit(CRay const& ray, CIntersection & bestIntersection, CSce
 
 		// Получаем геометрический объект, связанный с объектом сцены
 		IGeometryObject const& geometryObject = sceneObject.GetGeometryObject();
-		
+
 		// Ищем точки пересечения луча с данным геометрическим объетом
 		if (geometryObject.Hit(ray, intersection))
 		{
@@ -117,13 +117,11 @@ bool CScene::GetFirstHit(CRay const& ray, CIntersection & bestIntersection, CSce
 
 			// Если это первый объект, с которым было найдено пересечение,
 			// либо момент столкновения луча с данным объектом произошел раньше
-			// (точка пересечения с текущим объектом находится ближе к точке испускания 
+			// (точка пересечения с текущим объектом находится ближе к точке испускания
 			// луча, чем с ранее обработанными обектами),
 			// то за лучшую точку пересечения принимается найденная точка пересечения
 			if (
-				(bestIntersection.GetHitsCount() == 0) || 
-				(intersection.GetHit(0).GetHitTime() < bestIntersection.GetHit(0).GetHitTime())
-				)
+				(bestIntersection.GetHitsCount() == 0) || (intersection.GetHit(0).GetHitTime() < bestIntersection.GetHit(0).GetHitTime()))
 			{
 				bestIntersection = intersection;
 				*ppIntersectionObject = &sceneObject;
@@ -135,3 +133,7 @@ bool CScene::GetFirstHit(CRay const& ray, CIntersection & bestIntersection, CSce
 	return bestIntersection.GetHitsCount() > 0;
 }
 
+CMatrix4d const& CScene::GetModelViewMatrix() const
+{
+	return m_modelViewMatrix;
+}

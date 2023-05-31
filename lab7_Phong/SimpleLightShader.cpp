@@ -51,13 +51,8 @@ CVector4f CSimpleLightShader::Shade(CShadeContext const& shadeContext) const
 		double nDotL = Max(Dot(n, Normalize(lightDirection)), 0.0);
 
 		// Модель освещения Фонга: https://habr.com/ru/articles/441862/
-		CMatrix4d modelView;
-		modelView.LoadLookAtRH(
-			0, 3, 7,
-			0, 0, 0,
-			0, 1, 0);
 		CVector3d reflectDirection = Reflect(-lightDirection, n);
-		CVector3d viewDirection = Normalize(-(modelView * CVector4d(0, 3, 7, 1)));
+		CVector3d viewDirection = Normalize(-(scene.GetModelViewMatrix() * CVector4d(0, 3, 7, 1)));
 		double spec = std::pow(Max(Dot(viewDirection, reflectDirection), 0.0), 128);
 
 		CVector4f ambientColor = light.GetAmbientIntensity() * m_material.GetAmbientColor() * 0.1;

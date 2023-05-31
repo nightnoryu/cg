@@ -1,8 +1,10 @@
 ﻿#pragma once
 
 #include "ILightSource_fwd.h"
-#include "Vector4.h"
+#include "Matrix4.h"
+#include "Matrix_fwd.h"
 #include "SceneObject_fwd.h"
+#include "Vector4.h"
 
 class CRay;
 class CIntersection;
@@ -14,7 +16,7 @@ class CIntersection;
 class CScene
 {
 public:
-	CScene(void);
+	explicit CScene(CMatrix4d const& modelViewMatrix);
 
 	// Задать цвет заднего фона сцены
 	void SetBackdropColor(CVector4f const& backdropColor);
@@ -32,23 +34,28 @@ public:
 	/*
 	Возвращает количество источников света в сцене
 	*/
-	size_t GetLightsCount()const;
+	size_t GetLightsCount() const;
 
 	/*
 	Доступ к источнику света с указанным индексом
 	*/
-	ILightSource const& GetLight(size_t index)const;
+	ILightSource const& GetLight(size_t index) const;
 
 	/*
 	Возвращает цвет луча, столкнувшегося с объектами сцены
 	*/
-	CVector4f Shade(CRay const& ray)const;
+	CVector4f Shade(CRay const& ray) const;
 
 	/*
 	Трассирует луч вглубь сцены и возвращает информацию о первом столкновении луча с объектам сцены
 	*/
-	bool GetFirstHit(CRay const& ray, CIntersection & bestIntersection, CSceneObject const ** ppIntersectionObject)const;
+	bool GetFirstHit(CRay const& ray, CIntersection& bestIntersection, CSceneObject const** ppIntersectionObject) const;
+
+	CMatrix4d const& GetModelViewMatrix() const;
+
 private:
+	CMatrix4d const& m_modelViewMatrix;
+
 	// Коллекция объектов сцены
 	typedef std::vector<CSceneObjectPtr> SceneObjects;
 	SceneObjects m_objects;
