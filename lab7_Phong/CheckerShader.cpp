@@ -1,10 +1,10 @@
 ﻿#include "stdafx.h"
 #include "CheckerShader.h"
-#include "VectorMath.h"
 #include "ShadeContext.h"
+#include "VectorMath.h"
 
 CCheckerShader::CCheckerShader(CMatrix4d const& textureTransform)
-:m_textureTransform(textureTransform)
+	: m_textureTransform(textureTransform)
 {
 }
 
@@ -13,7 +13,7 @@ void CCheckerShader::SetTextureTransform(CMatrix4d const& textureTransform)
 	m_textureTransform = textureTransform;
 }
 
-CVector4f CCheckerShader::Shade(CShadeContext const & shadeContext)const
+CVector4f CCheckerShader::Shade(CShadeContext const& shadeContext) const
 {
 	/*
 	Шейдер шахматной доски подвергает точку, заданную в системе координат объекта,
@@ -37,6 +37,7 @@ CVector4f CCheckerShader::Shade(CShadeContext const & shadeContext)const
 	/*
 	Применяем операцию XOR для определения принадлежности точки либо к черному, либо к белому кубу
 	*/
+
 	if (int(s.x) ^ int(s.y) ^ int(s.z))
 	{
 		return CVector4f(1, 1, 1, 1);
@@ -45,5 +46,4 @@ CVector4f CCheckerShader::Shade(CShadeContext const & shadeContext)const
 	{
 		return CVector4f(0, 0, 0, 1);
 	}
-
 }

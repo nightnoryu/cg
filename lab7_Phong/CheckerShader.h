@@ -4,8 +4,7 @@
 /*
 Шейдер шахматной доски
 */
-class CCheckerShader :
-	public IShader
+class CCheckerShader : public IShader
 {
 public:
 	// Инициализация шейдера матрицей преобразования текстурных координат
@@ -13,7 +12,8 @@ public:
 
 	void SetTextureTransform(CMatrix4d const& textureTransform);
 
-	virtual CVector4f Shade(CShadeContext const & shadeContext)const;
+	virtual CVector4f Shade(CShadeContext const& shadeContext) const;
+
 private:
 	CMatrix4d m_textureTransform;
 };

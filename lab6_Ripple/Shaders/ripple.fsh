@@ -3,8 +3,6 @@ uniform float time;
 uniform sampler2D tex1;
 uniform sampler2D tex2;
 
-float radius = .5;
-
 void main()
 {
     float t = clamp(time / 6., 0., 1.);
@@ -13,7 +11,7 @@ void main()
     vec2 dir = coords - vec2(.5);
     
     float dist = distance(coords, vec2(.5));
-    vec2 offset = dir * (sin(dist * 80. - time*15.) + .5) / 30.;
+    vec2 offset = dir * (sin(dist * 40. - time * 15.) + .5) / 30.;
 
     vec2 texCoord = coords + offset;
     vec4 diffuse = texture2D(tex1, texCoord);

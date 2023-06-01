@@ -71,7 +71,8 @@ void CRaytraceView::AddSomeSpheres()
 	CSimpleMaterial yellow;
 	yellow.SetAmbientColor(CVector4f(1, 1, 0, 1));
 	yellow.SetDiffuseColor(CVector4f(1, 1, 0, 1));
-	CSimpleLightShader& shader = CreateSimpleDiffuseShader(yellow);
+	yellow.SetSpecularColor(CVector4f(1, 1, 0, 1));
+	CSimpleLightShader& shader = CreateSimpleLightShader(yellow);
 	AddSphere(shader, 1, CVector3d(0, 1, 0));
 	AddSphere(shader, 0.5, CVector3d(2, 0, 0));
 }
@@ -93,21 +94,23 @@ void CRaytraceView::AddSomeConicCylinders()
 	CSimpleMaterial white;
 	white.SetAmbientColor(CVector4f(1, 1, 1, 1));
 	white.SetDiffuseColor(CVector4f(1, 1, 1, 1));
+	white.SetSpecularColor(CVector4f(1, 1, 1, 1));
 
 	CMatrix4d transform;
 	transform.Translate(-2.5, 0, 0);
 	transform.Rotate(-90, 1, 0, 0);
 
-	AddConicCylinder(CreateSimpleDiffuseShader(white), 2, 1, 1, transform);
+	AddConicCylinder(CreateSimpleLightShader(white), 2, 1, 1, transform);
 
 	CSimpleMaterial red;
 	red.SetAmbientColor(CVector4f(1, 0, 0, 1));
 	red.SetDiffuseColor(CVector4f(1, 0, 0, 1));
+	red.SetSpecularColor(CVector4f(1, 0, 0, 1));
 	CMatrix4d coneTransform;
 	coneTransform.Translate(0, 0, 2);
 	coneTransform.Rotate(-90, 1, 0, 0);
 
-	AddConicCylinder(CreateSimpleDiffuseShader(red), 1, 1, 0, coneTransform);
+	AddConicCylinder(CreateSimpleLightShader(red), 1, 1, 0, coneTransform);
 
 	CMatrix4d conicFrustumTransform;
 	conicFrustumTransform.Translate(4.0, 0.0, 0.0);
@@ -115,7 +118,8 @@ void CRaytraceView::AddSomeConicCylinders()
 	CSimpleMaterial green;
 	green.SetAmbientColor(CVector4f(0, 1, 0, 1));
 	green.SetDiffuseColor(CVector4f(0, 1, 0, 1));
-	AddConicCylinder(CreateSimpleDiffuseShader(green), 1, 0.5, 0.3, conicFrustumTransform);
+	green.SetSpecularColor(CVector4f(0, 1, 0, 1));
+	AddConicCylinder(CreateSimpleLightShader(green), 1, 0.5, 0.3, conicFrustumTransform);
 }
 
 // Добавляем тетраэдр
@@ -148,8 +152,9 @@ void CRaytraceView::AddSomeTetrahedron()
 	CSimpleMaterial blue;
 	blue.SetAmbientColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetDiffuseColor(CVector4f(0.5f, 0.8f, 1, 1));
+	blue.SetSpecularColor(CVector4f(0.5f, 0.8f, 1, 1));
 
-	AddTriangleMesh(CreateSimpleDiffuseShader(blue), pMeshData, transform);
+	AddTriangleMesh(CreateSimpleLightShader(blue), pMeshData, transform);
 }
 
 CRaytraceView::~CRaytraceView()
@@ -282,7 +287,7 @@ bool CRaytraceView::UpdateFrameBuffer()
 
 CSceneObject& CRaytraceView::AddSphere(IShader const& shader, double radius, CVector3d const& center, CMatrix4d const& transform)
 {
-	const auto& sphere = *m_geometryObjects.emplace_back(
+	auto const& sphere = *m_geometryObjects.emplace_back(
 		std::make_unique<CSphere>(radius, center, transform));
 
 	return AddSceneObject(sphere, shader);
@@ -290,14 +295,14 @@ CSceneObject& CRaytraceView::AddSphere(IShader const& shader, double radius, CVe
 
 CSceneObject& CRaytraceView::AddConicCylinder(IShader const& shader, double height, double baseRadius, double capRadius, CMatrix4d const& transform)
 {
-	const auto& conicCylinder = *m_geometryObjects.emplace_back(
+	auto const& conicCylinder = *m_geometryObjects.emplace_back(
 		std::make_unique<CConicCylinder>(height, baseRadius, capRadius, transform));
 	return AddSceneObject(conicCylinder, shader);
 }
 
 CSceneObject& CRaytraceView::AddPlane(IShader const& shader, double a, double b, double c, double d, CMatrix4d const& transform)
 {
-	const auto& plane = *m_geometryObjects.emplace_back(
+	auto const& plane = *m_geometryObjects.emplace_back(
 		std::make_unique<CPlane>(a, b, c, d, transform));
 	return AddSceneObject(plane, shader);
 }
@@ -310,7 +315,7 @@ CTriangleMeshData* CRaytraceView::CreateTriangleMeshData(std::vector<Vertex> con
 
 CSceneObject& CRaytraceView::AddTriangleMesh(IShader const& shader, CTriangleMeshData const* pMeshData, CMatrix4d const& transform)
 {
-	const auto& mesh = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(pMeshData, transform));
+	auto const& mesh = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(pMeshData, transform));
 	return AddSceneObject(mesh, shader);
 }
 
@@ -321,7 +326,7 @@ CSceneObject& CRaytraceView::AddSceneObject(IGeometryObject const& object, IShad
 	return *obj;
 }
 
-CSimpleLightShader& CRaytraceView::CreateSimpleDiffuseShader(CSimpleMaterial const& material)
+CSimpleLightShader& CRaytraceView::CreateSimpleLightShader(CSimpleMaterial const& material)
 {
 	auto shader = std::make_unique<CSimpleLightShader>(material);
 	auto& shaderRef = *shader;
