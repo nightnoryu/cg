@@ -12,6 +12,7 @@ void main()
     
     float dist = distance(coords, vec2(.5));
     vec2 offset = dir * (sin(dist * 40. - time * 15.) + .5) / 30.;
+    // TODO: коэффициент diffuse должен зависеть от радиуса и смещаться с течением времени
 
     vec2 texCoord = coords + offset;
     vec4 diffuse = texture2D(tex1, texCoord);

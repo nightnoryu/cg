@@ -48,7 +48,7 @@ CVector4f CSimpleLightShader::Shade(CShadeContext const& shadeContext) const
 
 		CVector3d reflectDirection = Reflect(-lightDirection, n);
 		CVector3d viewDirection = Normalize(-(scene.GetModelViewMatrix() * CVector4d(scene.GetCameraPosition(), 1)));
-		double spec = std::pow(Max(Dot(viewDirection, reflectDirection), 0.0), 256);
+		double spec = std::pow(Max(Dot(viewDirection, reflectDirection), 0.0), 256); // TODO: put in material
 
 		CVector4f ambientColor = light.GetAmbientIntensity() * m_material.GetAmbientColor() * 0.1;
 		CVector4f diffuseColor = static_cast<float>(nDotL * lightIntensity) * light.GetDiffuseIntensity() * m_material.GetDiffuseColor();
