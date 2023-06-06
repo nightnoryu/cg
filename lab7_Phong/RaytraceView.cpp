@@ -19,6 +19,7 @@
 #include "Sphere.h"
 #include "TriangleMesh.h"
 #include "Tetrahedron.h"
+#include "Cube.h"
 
 CRaytraceView::CRaytraceView()
 	: m_pFrameBuffer(std::make_unique<CFrameBuffer>(800, 600))
@@ -29,14 +30,10 @@ CRaytraceView::CRaytraceView()
 	*/
 	m_scene.SetBackdropColor(CVector4f(1, 0, 1, 1));
 
-	AddSomePlane();
-
-	AddSomeSpheres();
-
-	AddSomeConicCylinders();
-
 	AddSomeLight();
 
+	AddSomePlane();
+	AddSomeCube();
 	AddSomeTetrahedron();
 
 	/*
@@ -123,12 +120,27 @@ void CRaytraceView::AddSomeConicCylinders()
 	AddConicCylinder(CreateSimpleLightShader(green), 1, 0.5, 0.3, conicFrustumTransform);
 }
 
+void CRaytraceView::AddSomeCube()
+{
+	CMatrix4d transform;
+	transform.Translate(-2.5, 1, 0);
+	transform.Rotate(-90, 1, 0, 0);
+
+	CSimpleMaterial green;
+	green.SetAmbientColor(CVector4f(0, 1, 0, 1));
+	green.SetDiffuseColor(CVector4f(0, 1, 0, 1));
+	green.SetSpecularColor(CVector4f(0, 1, 0, 1));
+
+	AddCube(CreateSimpleLightShader(green), transform);
+}
+
 // Добавляем тетраэдр
 void CRaytraceView::AddSomeTetrahedron()
 {
 	CMatrix4d transform;
 	transform.Translate(3, 0.3, -1);
 	transform.Rotate(170, 0, 1, 0);
+
 	CSimpleMaterial blue;
 	blue.SetAmbientColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetDiffuseColor(CVector4f(0.5f, 0.8f, 1, 1));
@@ -285,6 +297,12 @@ CSceneObject& CRaytraceView::AddPlane(IShader const& shader, double a, double b,
 	auto const& plane = *m_geometryObjects.emplace_back(
 		std::make_unique<CPlane>(a, b, c, d, transform));
 	return AddSceneObject(plane, shader);
+}
+
+CSceneObject& CRaytraceView::AddCube(IShader const& shader, CMatrix4d const& transform)
+{
+	auto const& cube = *m_geometryObjects.emplace_back(std::make_unique<CCube>(transform));
+	return AddSceneObject(cube, shader);
 }
 
 CSceneObject& CRaytraceView::AddTetrahedron(IShader const& shader, CMatrix4d const& transform)

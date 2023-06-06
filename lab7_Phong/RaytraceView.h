@@ -58,6 +58,7 @@ private:
 	void AddSomeSpheres();
 	void AddSomeLight();
 	void AddSomeConicCylinders();
+	void AddSomeCubes();
 	void AddSomeTetrahedron();
 
 	// Отрисовка содержимого буфера кадра на контексте устройства
@@ -72,6 +73,7 @@ private:
 	CSceneObject& AddSphere(IShader const& shader, double radius = 1, CVector3d const& center = CVector3d(), CMatrix4d const& transform = CMatrix4d());
 	CSceneObject& AddConicCylinder(IShader const& shader, double height = 1, double baseRadius = 1, double capRadius = 0, CMatrix4d const& transform = CMatrix4d());
 	CSceneObject& AddPlane(IShader const& shader, double a, double b, double c, double d, CMatrix4d const& transform = CMatrix4d());
+	CSceneObject& AddCube(IShader const& shader, CMatrix4d const& transform = CMatrix4d());
 	CSceneObject& AddTetrahedron(IShader const& shader, CMatrix4d const& transform = CMatrix4d());
 
 	CSceneObject& AddSceneObject(IGeometryObject const& object, IShader const& shader);

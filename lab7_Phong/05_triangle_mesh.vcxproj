@@ -337,6 +337,7 @@
     <ClCompile Include="AboutDlg.cpp" />
     <ClCompile Include="CheckerShader.cpp" />
     <ClCompile Include="ConicCylinder.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FrameBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -365,6 +366,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="CheckerShader.h" />
     <ClInclude Include="ConicCylinder.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="FrameBuffer.h" />
     <ClInclude Include="FrameBufferColorBuffer.h" />
     <ClInclude Include="GeometryObjectImpl.h" />
