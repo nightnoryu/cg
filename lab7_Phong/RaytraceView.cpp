@@ -33,8 +33,8 @@ CRaytraceView::CRaytraceView()
 	AddSomeLight();
 
 	AddSomePlane();
-	AddSomeCube();
-	AddSomeTetrahedron();
+	AddSomeCubes();
+	AddSomeTetrahedrons();
 
 	/*
 	Задаем параметры видового порта и матрицы проецирования в контексте визуализации
@@ -120,7 +120,7 @@ void CRaytraceView::AddSomeConicCylinders()
 	AddConicCylinder(CreateSimpleLightShader(green), 1, 0.5, 0.3, conicFrustumTransform);
 }
 
-void CRaytraceView::AddSomeCube()
+void CRaytraceView::AddSomeCubes()
 {
 	CMatrix4d transform1;
 	transform1.Translate(-2.5, 1, 0);
@@ -135,6 +135,7 @@ void CRaytraceView::AddSomeCube()
 
 	CMatrix4d transform2;
 	transform2.Translate(0, 1, 0);
+	transform2.Scale(0.7, 0.7, 0.7);
 	transform2.Rotate(-30, 0, 0, 1);
 	transform2.Rotate(-30, 0, 1, 0);
 
@@ -147,18 +148,31 @@ void CRaytraceView::AddSomeCube()
 }
 
 // Добавляем тетраэдр
-void CRaytraceView::AddSomeTetrahedron()
+void CRaytraceView::AddSomeTetrahedrons()
 {
-	CMatrix4d transform;
-	transform.Translate(3, 0.3, -1);
-	transform.Rotate(170, 0, 1, 0);
+	CMatrix4d transform1;
+	transform1.Translate(3, 0.3, -1);
+	transform1.Rotate(170, 0, 1, 0);
 
 	CSimpleMaterial blue;
 	blue.SetAmbientColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetDiffuseColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetSpecularColor(CVector4f(0.5f, 0.8f, 1, 1));
 
-	AddTetrahedron(CreateSimpleLightShader(blue), transform);
+	AddTetrahedron(CreateSimpleLightShader(blue), transform1);
+
+	CMatrix4d transform2;
+	transform2.Translate(1, 1, 2);
+	transform2.Scale(0.5, 0.5, 0.5);
+	transform2.Rotate(30, 0, 0, 1);
+	transform2.Rotate(60, 1, 0, 0);
+
+	CSimpleMaterial yellow;
+	yellow.SetAmbientColor(CVector4f(1, 1, 0, 1));
+	yellow.SetDiffuseColor(CVector4f(1, 1, 0, 1));
+	yellow.SetSpecularColor(CVector4f(1, 1, 0, 1));
+
+	AddTetrahedron(CreateSimpleLightShader(yellow), transform2);
 }
 
 CRaytraceView::~CRaytraceView()
