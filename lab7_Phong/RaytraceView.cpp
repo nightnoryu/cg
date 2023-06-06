@@ -122,16 +122,28 @@ void CRaytraceView::AddSomeConicCylinders()
 
 void CRaytraceView::AddSomeCube()
 {
-	CMatrix4d transform;
-	transform.Translate(-2.5, 1, 0);
-	transform.Rotate(-90, 1, 0, 0);
+	CMatrix4d transform1;
+	transform1.Translate(-2.5, 1, 0);
+	transform1.Rotate(-90, 1, 0, 0);
 
 	CSimpleMaterial green;
 	green.SetAmbientColor(CVector4f(0, 1, 0, 1));
 	green.SetDiffuseColor(CVector4f(0, 1, 0, 1));
 	green.SetSpecularColor(CVector4f(0, 1, 0, 1));
 
-	AddCube(CreateSimpleLightShader(green), transform);
+	AddCube(CreateSimpleLightShader(green), transform1);
+
+	CMatrix4d transform2;
+	transform2.Translate(0, 1, 0);
+	transform2.Rotate(-30, 0, 0, 1);
+	transform2.Rotate(-30, 0, 1, 0);
+
+	CSimpleMaterial red;
+	red.SetAmbientColor(CVector4f(1, 0, 0, 1));
+	red.SetDiffuseColor(CVector4f(1, 0, 0, 1));
+	red.SetSpecularColor(CVector4f(1, 0, 0, 1));
+
+	AddCube(CreateSimpleLightShader(red), transform2);
 }
 
 // Добавляем тетраэдр

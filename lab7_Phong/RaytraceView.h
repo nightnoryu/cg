@@ -58,7 +58,7 @@ private:
 	void AddSomeSpheres();
 	void AddSomeLight();
 	void AddSomeConicCylinders();
-	void AddSomeCubes();
+	void AddSomeCube();
 	void AddSomeTetrahedron();
 
 	// Отрисовка содержимого буфера кадра на контексте устройства
