@@ -357,6 +357,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Tetrahedron.cpp" />
     <ClCompile Include="TriangleMesh.cpp" />
     <ClCompile Include="ViewPort.cpp" />
   </ItemGroup>
@@ -395,6 +396,7 @@
     <ClInclude Include="SimpleMaterial.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tetrahedron.h" />
     <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />

@@ -18,6 +18,7 @@
 #include "SimpleMaterial.h"
 #include "Sphere.h"
 #include "TriangleMesh.h"
+#include "Tetrahedron.h"
 
 CRaytraceView::CRaytraceView()
 	: m_pFrameBuffer(std::make_unique<CFrameBuffer>(800, 600))
@@ -125,27 +126,6 @@ void CRaytraceView::AddSomeConicCylinders()
 // Добавляем тетраэдр
 void CRaytraceView::AddSomeTetrahedron()
 {
-	// Вершины
-	CVector3d v0(-1, 0, 1);
-	CVector3d v1(+1, 0, 1);
-	CVector3d v2(0, 0, -1);
-	CVector3d v3(0, 2, 0);
-	std::vector<Vertex> vertices;
-	vertices.push_back(Vertex(v0));
-	vertices.push_back(Vertex(v1));
-	vertices.push_back(Vertex(v2));
-	vertices.push_back(Vertex(v3));
-
-	// Грани
-	std::vector<Face> faces;
-	faces.push_back(Face(0, 2, 1));
-	faces.push_back(Face(3, 0, 1));
-	faces.push_back(Face(3, 1, 2));
-	faces.push_back(Face(3, 2, 0));
-
-	// Данные полигональной сетки
-	CTriangleMeshData* pMeshData = CreateTriangleMeshData(vertices, faces);
-
 	CMatrix4d transform;
 	transform.Translate(3, 0.3, -1);
 	transform.Rotate(170, 0, 1, 0);
@@ -154,7 +134,7 @@ void CRaytraceView::AddSomeTetrahedron()
 	blue.SetDiffuseColor(CVector4f(0.5f, 0.8f, 1, 1));
 	blue.SetSpecularColor(CVector4f(0.5f, 0.8f, 1, 1));
 
-	AddTriangleMesh(CreateSimpleLightShader(blue), pMeshData, transform);
+	AddTetrahedron(CreateSimpleLightShader(blue), transform);
 }
 
 CRaytraceView::~CRaytraceView()
@@ -307,16 +287,10 @@ CSceneObject& CRaytraceView::AddPlane(IShader const& shader, double a, double b,
 	return AddSceneObject(plane, shader);
 }
 
-CTriangleMeshData* CRaytraceView::CreateTriangleMeshData(std::vector<Vertex> const& vertices, std::vector<Face> const& faces)
+CSceneObject& CRaytraceView::AddTetrahedron(IShader const& shader, CMatrix4d const& transform)
 {
-	auto* meshData = m_triangleMeshDataObjects.emplace_back(std::make_unique<CTriangleMeshData>(vertices, faces)).get();
-	return meshData;
-}
-
-CSceneObject& CRaytraceView::AddTriangleMesh(IShader const& shader, CTriangleMeshData const* pMeshData, CMatrix4d const& transform)
-{
-	auto const& mesh = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(pMeshData, transform));
-	return AddSceneObject(mesh, shader);
+	auto const& tetrahedron = *m_geometryObjects.emplace_back(std::make_unique<CTetrahedron>(transform));
+	return AddSceneObject(tetrahedron, shader);
 }
 
 CSceneObject& CRaytraceView::AddSceneObject(IGeometryObject const& object, IShader const& shader)

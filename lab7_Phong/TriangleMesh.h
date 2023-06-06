@@ -138,12 +138,12 @@ private:
 class CTriangleMesh : public CGeometryObjectImpl
 {
 public:
-	CTriangleMesh(CTriangleMeshData const* pMeshData, CMatrix4d const& transform = CMatrix4d());
+	CTriangleMesh(std::shared_ptr<CTriangleMeshData> const& pMeshData, CMatrix4d const& transform = CMatrix4d());
 
 	// Поиск пересечения луча с полигональной сеткой
 	virtual bool Hit(CRay const& ray, CIntersection& intersection) const;
 
 private:
 	// Адрес данных полигональной сетки
-	CTriangleMeshData const* m_pMeshData;
+	std::shared_ptr<CTriangleMeshData> m_pMeshData;
 };

@@ -171,7 +171,7 @@ CTriangleMeshData::CTriangleMeshData(std::vector<Vertex> const& vertices, std::v
 	}
 }
 
-CTriangleMesh::CTriangleMesh(CTriangleMeshData const* pMeshData, CMatrix4d const& transform)
+CTriangleMesh::CTriangleMesh(std::shared_ptr<CTriangleMeshData> const& pMeshData, CMatrix4d const& transform)
 	: CGeometryObjectImpl(transform)
 	, m_pMeshData(pMeshData)
 {
