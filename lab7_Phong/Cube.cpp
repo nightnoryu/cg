@@ -2,7 +2,6 @@
 #include "Cube.h"
 
 CCube::CCube(CMatrix4d const& transform)
-	: m_mesh(nullptr)
 {
 	std::vector<Vertex> vertices{
 		Vertex({ -1, 0, -1 }),

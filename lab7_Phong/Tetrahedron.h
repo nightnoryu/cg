@@ -10,5 +10,5 @@ public:
 	virtual bool Hit(CRay const& ray, CIntersection& intersection) const;
 
 private:
-	CTriangleMesh m_mesh;
+	CTriangleMesh m_mesh{ nullptr };
 };
