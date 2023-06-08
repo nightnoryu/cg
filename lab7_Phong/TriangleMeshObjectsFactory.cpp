@@ -1,24 +1,24 @@
 #include "stdafx.h"
 #include "TriangleMeshObjectsFactory.h"
 
-CTriangleMesh CTriangleMeshObjectsFactory::CreateCube(CMatrix4d const& transform)
+std::unique_ptr<IGeometryObject> CTriangleMeshObjectsFactory::CreateCube(CMatrix4d const& transform)
 {
 	if (m_cubeMeshData == nullptr)
 	{
 		m_cubeMeshData = CreateCubeMeshData();
 	}
 
-	return CTriangleMesh(m_cubeMeshData, transform);
+	return std::make_unique<CTriangleMesh>(m_cubeMeshData, transform);
 }
 
-CTriangleMesh CTriangleMeshObjectsFactory::CreateTetrahedron(CMatrix4d const& transform)
+std::unique_ptr<IGeometryObject> CTriangleMeshObjectsFactory::CreateTetrahedron(CMatrix4d const& transform)
 {
 	if (m_tetrahedronMeshData == nullptr)
 	{
 		m_tetrahedronMeshData = CreateTetrahedronMeshData();
 	}
 
-	return CTriangleMesh(m_tetrahedronMeshData, transform);
+	return std::make_unique<CTriangleMesh>(m_tetrahedronMeshData, transform);
 }
 
 CTriangleMeshObjectsFactory::CTriangleMeshDataPtr CTriangleMeshObjectsFactory::CreateCubeMeshData()

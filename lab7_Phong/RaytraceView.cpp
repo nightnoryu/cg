@@ -326,13 +326,13 @@ CSceneObject& CRaytraceView::AddPlane(IShader const& shader, double a, double b,
 
 CSceneObject& CRaytraceView::AddCube(IShader const& shader, CMatrix4d const& transform)
 {
-	auto const& cube = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(m_triangleMeshObjectsFactory.CreateCube(transform)));
+	auto const& cube = *m_geometryObjects.emplace_back(m_triangleMeshObjectsFactory.CreateCube(transform));
 	return AddSceneObject(cube, shader);
 }
 
 CSceneObject& CRaytraceView::AddTetrahedron(IShader const& shader, CMatrix4d const& transform)
 {
-	auto const& tetrahedron = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(m_triangleMeshObjectsFactory.CreateTetrahedron(transform)));
+	auto const& tetrahedron = *m_geometryObjects.emplace_back(m_triangleMeshObjectsFactory.CreateTetrahedron(transform));
 	return AddSceneObject(tetrahedron, shader);
 }
 
