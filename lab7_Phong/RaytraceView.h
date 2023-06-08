@@ -8,6 +8,7 @@
 #include "RenderContext.h"
 #include "Renderer.h"
 #include "Scene.h"
+#include "TriangleMeshObjectsFactory.h"
 
 class CFrameBuffer;
 
@@ -87,7 +88,8 @@ private:
 
 	std::unique_ptr<CFrameBuffer> m_pFrameBuffer;
 
-	std::vector<std::unique_ptr<CTriangleMeshData>> m_triangleMeshDataObjects;
 	std::vector<std::unique_ptr<IGeometryObject>> m_geometryObjects;
 	std::vector<std::unique_ptr<IShader>> m_shaders;
+
+	CTriangleMeshObjectsFactory m_triangleMeshObjectsFactory;
 };

@@ -18,8 +18,6 @@
 #include "SimpleMaterial.h"
 #include "Sphere.h"
 #include "TriangleMesh.h"
-#include "Tetrahedron.h"
-#include "Cube.h"
 
 CRaytraceView::CRaytraceView()
 	: m_pFrameBuffer(std::make_unique<CFrameBuffer>(800, 600))
@@ -125,6 +123,7 @@ void CRaytraceView::AddSomeCubes()
 	CMatrix4d transform1;
 	transform1.Translate(-2.5, 1, 0);
 	transform1.Rotate(-90, 1, 0, 0);
+	transform1.Rotate(40, 0, 0, 1);
 
 	CSimpleMaterial green;
 	green.SetAmbientColor(CVector4f(0, 1, 0, 1));
@@ -327,13 +326,13 @@ CSceneObject& CRaytraceView::AddPlane(IShader const& shader, double a, double b,
 
 CSceneObject& CRaytraceView::AddCube(IShader const& shader, CMatrix4d const& transform)
 {
-	auto const& cube = *m_geometryObjects.emplace_back(std::make_unique<CCube>(transform));
+	auto const& cube = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(m_triangleMeshObjectsFactory.CreateCube(transform)));
 	return AddSceneObject(cube, shader);
 }
 
 CSceneObject& CRaytraceView::AddTetrahedron(IShader const& shader, CMatrix4d const& transform)
 {
-	auto const& tetrahedron = *m_geometryObjects.emplace_back(std::make_unique<CTetrahedron>(transform));
+	auto const& tetrahedron = *m_geometryObjects.emplace_back(std::make_unique<CTriangleMesh>(m_triangleMeshObjectsFactory.CreateTetrahedron(transform)));
 	return AddSceneObject(tetrahedron, shader);
 }
 
