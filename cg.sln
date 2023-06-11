@@ -17,7 +17,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab6_Picture", "lab6_Pictur
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab6_Arrow", "lab6_Arrow\lab6_Arrow.vcxproj", "{6C18E646-CD68-4252-A687-0211573507D2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab7_Phong", "lab7_Phong\05_triangle_mesh.vcxproj", "{B1A51519-2BB3-43E9-86EF-3C2BD6160985}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab7_Phong_And_Shapes", "lab7_Phong_And_Shapes\lab7_Phong_And_Shapes.vcxproj", "{B1A51519-2BB3-43E9-86EF-3C2BD6160985}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgl", "libgl\libgl.vcxproj", "{18D80F7F-FBCA-458C-B3E4-C238221B34A8}"
 EndProject
